@@ -7,15 +7,14 @@ import './index.css';
 
 function App() {
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: '#f8fafc' }}>
+    <div style={{ minHeight: '100vh', backgroundColor: '#fdfdfd' }}>
       <Header />
-      <main>
+      <main style={{ paddingBottom: '120px' }}>
         <Hero />
-        <LiveStatus />
-        <QuickServices />
-        
-        {/* Padding for bottom nav */}
-        <div style={{ height: '100px' }}></div>
+        <div style={{ position: 'relative', zIndex: 10 }}>
+          <LiveStatus />
+          <QuickServices />
+        </div>
       </main>
       <BottomNav />
     </div>

@@ -12,13 +12,13 @@
   background: white;
   padding: 32px 40px;
   border-radius: 40px;
-  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
 }
 
 .sectionTitle {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #001f3f;
+  color: #0f172a;
   margin-bottom: 24px;
 }
 
@@ -29,21 +29,21 @@
 }
 
 .card {
-  background: #ffffff;
-  border: 1px solid #f1f5f9;
+  background: #f8fafc;
   border-radius: 24px;
-  padding: 16px; /* Reduced padding for 5-column fit */
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 140px; /* Reduced height for tighter row */
-  transition: all 0.2s ease;
+  height: 140px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0,0,0,0.02);
 }
 
 .card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
-  border-color: #e2e8f0;
+  background: white;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
 .topSection {
@@ -55,8 +55,8 @@
 .iconContainer {
   flex-shrink: 0;
   display: flex;
-  align-items: flex-start;
-  padding-top: 4px;
+  align-items: center;
+  justify-content: center;
 }
 
 .labelGroup {
@@ -65,39 +65,35 @@
 }
 
 .label {
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
   font-weight: 600;
   color: #64748b;
   margin: 0;
-  line-height: 1.2;
 }
 
 .status {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-top: 4px;
-  line-height: 1.1;
+  font-size: 1.125rem;
+  font-weight: 800;
+  margin-top: 2px;
+  color: #0f172a;
 }
 
 .footerSection {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: auto;
+  justify-content: flex-end;
   padding-top: 12px;
 }
 
 .footerText {
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #1f2937;
-  opacity: 0.9;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #475569;
 }
 
 /* Custom Parking Icon Styling */
 .parkingIconWrapper {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   background-color: #3b82f6;
   border-radius: 50%;
   display: flex;
@@ -108,69 +104,60 @@
 
 .parkingP {
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   font-weight: 800;
-  line-height: 1;
 }
-
-/* 3-column wrap removed to keep single line on desktop */
 
 @media (max-width: 768px) {
   .statusContainer {
-    margin-top: -40px;
-    padding: 0 0 0 16px;
+    margin-top: -30px; /* Softer negative margin */
+    padding: 0;
   }
+  
+  .innerContainer {
+    border-radius: 32px 32px 0 0;
+    padding: 24px 0 0 0;
+    box-shadow: none;
+    background: white;
+  }
+  
+  .sectionTitle {
+    padding: 0 20px;
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+  }
+  
   .grid {
     display: flex;
     overflow-x: auto;
-    padding-bottom: 24px;
-    padding-right: 16px;
+    padding: 0 20px 24px 20px;
     gap: 12px;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
   }
+  
   .grid::-webkit-scrollbar {
     display: none;
   }
-  .innerContainer {
-    border-radius: 24px 24px 0 0;
-    padding: 20px 0 0 0;
-    background: white;
-  }
-  .sectionTitle {
-    padding-left: 16px;
-    font-size: 1.15rem;
-    margin-bottom: 16px;
-  }
+  
   .card {
-    flex: 0 0 130px; /* Reduced width to match ref */
-    height: 120px; /* Reduced height to match ref */
-    padding: 12px;
+    flex: 0 0 140px; /* Professional peek effect */
+    height: 125px;
+    padding: 16px;
     border-radius: 20px;
     scroll-snap-align: start;
+    background: #f1f5f9;
   }
+  
   .status {
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
+  
   .label {
     font-size: 0.75rem;
   }
-  .parkingIconWrapper {
-    width: 32px;
-    height: 32px;
-  }
-  .parkingP {
-    font-size: 1.1rem;
-  }
-  .cardIcon {
-    width: 24px !important;
-    height: 24px !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .grid {
-    /* Maintain flex for horizontal scroll on very small devices too */
-    display: flex;
+  
+  .footerText {
+    font-size: 0.75rem;
   }
 }
