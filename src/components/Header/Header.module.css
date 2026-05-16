@@ -1,0 +1,175 @@
+.headerWrapper {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--header-height);
+  background: var(--bg-glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-color);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  box-shadow: var(--shadow-subtle);
+}
+
+.headerContainer {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.iconButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1a1a1a;
+  transition: opacity 0.2s ease;
+  padding: 8px;
+  flex-shrink: 0;
+}
+
+.iconButton:hover {
+  opacity: 0.7;
+}
+
+.brandContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary-navy);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.subtitle {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--secondary-text);
+  margin-top: 2px;
+  white-space: nowrap;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.notificationWrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background-color: var(--accent-red);
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  border: 2px solid white;
+}
+
+.languageSelector {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.languageSelector:hover {
+  background-color: #e2e8f0;
+}
+
+.teluguText {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+@media (max-width: 480px) {
+  .headerContainer {
+    padding: 0 8px;
+  }
+  
+  .leftSection {
+    gap: 4px;
+  }
+
+  .brandContainer {
+    gap: 8px;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+  
+  .subtitle {
+    font-size: 0.68rem;
+  }
+  
+  .logo {
+    height: 42px;
+  }
+
+  .rightSection {
+    gap: 8px;
+  }
+
+  .teluguText {
+    font-size: 0.85rem;
+  }
+  
+  .languageSelector {
+    padding: 6px 8px;
+    gap: 4px;
+  }
+
+  .iconButton {
+    padding: 4px;
+  }
+}

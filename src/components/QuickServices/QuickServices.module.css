@@ -1,0 +1,150 @@
+.sectionWrapper {
+  width: 100%;
+  padding: 30px 0;
+  background: transparent;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.viewAll {
+  background: none;
+  border: none;
+  color: #3b82f6;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+.card {
+  background: white;
+  border: 1px solid #f1f5f9;
+  border-radius: 20px;
+  padding: 20px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+  border-color: #e2e8f0;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #0f172a;
+  text-align: center;
+  line-height: 1.2;
+}
+
+/* Special Icons */
+.sosCircle {
+  width: 36px;
+  height: 36px;
+  background: #ef4444;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sosText {
+  color: white;
+  font-weight: 800;
+  font-size: 0.75rem;
+}
+
+.parkingCircle {
+  width: 36px;
+  height: 36px;
+  background: #3b82f6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.parkingP {
+  color: white;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .sectionWrapper {
+    padding: 20px 0;
+  }
+  .container {
+    padding: 0 16px;
+  }
+  .header {
+    margin-bottom: 16px;
+  }
+  .title {
+    font-size: 1.1rem;
+  }
+  .grid {
+    grid-template-columns: repeat(5, 1fr); /* 5 columns on mobile as requested */
+    gap: 8px;
+  }
+  .card {
+    padding: 12px 4px;
+    border-radius: 16px;
+    gap: 8px;
+    min-height: 90px;
+  }
+  .iconWrapper {
+    width: 32px;
+    height: 32px;
+  }
+  .sosCircle, .parkingCircle {
+    width: 28px;
+    height: 28px;
+  }
+  .sosText {
+    font-size: 0.6rem;
+  }
+  .parkingP {
+    font-size: 0.9rem;
+  }
+  .label {
+    font-size: 0.6rem; /* Scaled down for 5-column row */
+  }
+}
