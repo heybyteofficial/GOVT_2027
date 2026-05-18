@@ -159,11 +159,11 @@ const QuickServices: React.FC<QuickServicesProps> = ({ onSelectService }) => {
                   onSelectService('parking-finder');
                 } else if (service.id === 5 && onSelectService) {
                   onSelectService('food-water');
-                } else if (service.target === 'emergency' && onSelectService) {
+                } else if ((service.id === 8 || service.id === 9 || service.target === 'emergency') && onSelectService) {
                   onSelectService('emergency');
                 }
               }}
-              style={(service.id === 1 || service.id === 2 || service.id === 3 || service.id === 5 || service.target === 'emergency') ? { cursor: 'pointer' } : undefined}
+              style={(service.id === 1 || service.id === 2 || service.id === 3 || service.id === 5 || service.id === 8 || service.id === 9 || service.target === 'emergency') ? { cursor: 'pointer' } : undefined}
             >
               <div className={styles.iconWrapper}>
                 <service.icon />

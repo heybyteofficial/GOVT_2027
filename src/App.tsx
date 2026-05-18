@@ -8,10 +8,10 @@ import Profile from './components/Profile/Profile';
 import Updates from './components/Updates/Updates';
 import PilgrimMap from './components/PilgrimMap/PilgrimMap';
 import GhatRecommendation from './components/GhatRecommendation/GhatRecommendation';
-import EmergencyPage from './components/EmergencyPage/EmergencyPage';
 import LiveTransport from './components/LiveTransport/LiveTransport';
 import ParkingFinder from './components/ParkingFinder/ParkingFinder';
 import FoodWaterHubs from './components/FoodWaterHubs/FoodWaterHubs';
+import EmergencyGrid from './components/EmergencyGrid/EmergencyGrid';
 import BottomNav from './components/BottomNav/BottomNav';
 import './index.css';
 
@@ -40,7 +40,7 @@ function App() {
         ) : activeTab === 'food-water' ? (
           <FoodWaterHubs onBack={() => setActiveTab('home')} />
         ) : activeTab === 'emergency' ? (
-          <EmergencyPage onBack={() => setActiveTab('home')} />
+          <EmergencyGrid onBack={() => setActiveTab('home')} />
         ) : activeTab === 'map' ? (
           <PilgrimMap />
         ) : activeTab === 'updates' ? (
