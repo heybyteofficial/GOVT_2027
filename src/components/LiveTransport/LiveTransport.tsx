@@ -46,11 +46,11 @@ const LiveTransport: React.FC<LiveTransportProps> = ({ onBack }) => {
           <span className={styles.depotLabel}>DEPOT HUB</span>
         </div>
 
-        {/* SVG Pipeline Paths */}
-        <svg className={styles.svgOverlay} viewBox="0 0 500 360" preserveAspectRatio="none">
+        {/* SVG Pipeline Paths (Viewbox 500x280 matches flat road coordinates) */}
+        <svg className={styles.svgOverlay} viewBox="0 0 500 280" preserveAspectRatio="none">
           {/* Route A (Congested Route) - Red */}
           <path 
-            d="M 250 180 C 180 180, 120 220, 100 280" 
+            d="M 240 140 Q 160 150, 100 190" 
             fill="none" 
             stroke="#EF4444" 
             strokeWidth="3" 
@@ -59,7 +59,7 @@ const LiveTransport: React.FC<LiveTransportProps> = ({ onBack }) => {
           />
           {/* Route B (AI Diverted Route) - Emerald */}
           <path 
-            d="M 250 180 C 320 180, 380 140, 400 80" 
+            d="M 240 140 Q 300 130, 390 70" 
             fill="none" 
             stroke="#0D9488" 
             strokeWidth="3.5"

@@ -71,11 +71,11 @@ const GhatRecommendation: React.FC<GhatRecommendationProps> = ({ onBack }) => {
           <span className={styles.userLabel}>YOU</span>
         </div>
 
-        {/* SVG PATH DRAWING (Responsive Viewbox mapping coordinates on 500x380 viewport) */}
-        <svg className={styles.svgOverlay} viewBox="0 0 500 380" preserveAspectRatio="none">
+        {/* SVG PATH DRAWING (Responsive Viewbox mapping coordinates on 500 280 viewport) */}
+        <svg className={styles.svgOverlay} viewBox="0 0 500 280" preserveAspectRatio="none">
           {/* Path to Dangerous Ghat (Red) */}
           <path 
-            d="M 175 285 Q 110 240 75 171" 
+            d="M 160 190 Q 120 180, 90 100" 
             fill="none" 
             stroke="#EF4444" 
             strokeWidth="2.5" 
@@ -84,7 +84,7 @@ const GhatRecommendation: React.FC<GhatRecommendationProps> = ({ onBack }) => {
           />
           {/* Path to Safe Recommended Ghat (Green) */}
           <path 
-            d="M 175 285 Q 260 210 300 57" 
+            d="M 160 190 Q 240 180, 290 85" 
             fill="none" 
             stroke="#0D9488" 
             strokeWidth={routeActive ? "4.5" : "2.5"} 

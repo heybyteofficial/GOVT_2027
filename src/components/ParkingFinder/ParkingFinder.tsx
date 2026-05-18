@@ -64,9 +64,9 @@ const ParkingFinder: React.FC<ParkingFinderProps> = ({ onBack }) => {
 
         {/* SVG Navigation Vector Path leading directly into Lot B */}
         <svg className={styles.svgOverlay} viewBox="0 0 500 280" preserveAspectRatio="none">
-          {/* Solid glowing vector curve */}
+          {/* Solid glowing vector curve aligned with flat 2D roads */}
           <path 
-            d="M 120 220 Q 250 200, 310 135" 
+            d="M 160 190 Q 240 180, 290 85" 
             fill="none" 
             stroke="#0D9488" 
             strokeWidth="3.5"

@@ -1,7 +1,7 @@
 .outerContainer {
   position: relative;
   min-height: 100vh;
-  background-color: #f8fafc; /* Light Slate-50 terrain canvas */
+  background-color: #f8fafc; /* Professional Light Slate-50 background */
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -11,7 +11,7 @@
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.03);
 }
 
-/* FIXED COMPACT HEADER */
+/* COMPACT HEADER */
 .header {
   padding: 14px 16px;
   display: flex;
@@ -99,29 +99,24 @@
   letter-spacing: 0.8px;
 }
 
-/* VISUAL MAP SYSTEM - High Fidelity Photo Background */
+/* VISUAL MAP SYSTEM - High Fidelity Flat Google/Zomato Maps base */
 .mapContainer {
   position: relative;
-  flex: 1;
-  min-height: 380px;
-  background-image: url('/ghat-redirection.png');
+  height: 295px;
+  background-image: url('/ghat-map-google.png'); /* Google Maps flat light riverbank view */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   overflow: hidden;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   border-bottom: 1px solid #e2e8f0;
 }
 
-/* Semi-transparent dark overlay for high-trust premium glass feel */
+/* Subtle semi-transparent ivory glass cover for seamless Light Theme branding */
 .mapContainer::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(248, 250, 252, 0.35); /* Ivory overlay to maintain light theme over map */
+  background: rgba(248, 250, 252, 0.15);
   pointer-events: none;
   z-index: 2;
 }
@@ -129,7 +124,7 @@
 .radarGrid {
   position: absolute;
   inset: 0;
-  opacity: 0.12;
+  opacity: 0.05;
   background-image: linear-gradient(to right, #0f172a 1px, transparent 1px),
                     linear-gradient(to bottom, #0f172a 1px, transparent 1px);
   background-size: 24px 24px;
@@ -142,9 +137,9 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 320px;
-  height: 320px;
-  border: 1.5px dashed rgba(15, 23, 42, 0.1);
+  width: 240px;
+  height: 240px;
+  border: 1.5px dashed rgba(15, 23, 42, 0.08);
   border-radius: 50%;
   pointer-events: none;
   z-index: 3;
@@ -155,9 +150,9 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 180px;
-  height: 180px;
-  border: 1.5px dashed rgba(15, 23, 42, 0.1);
+  width: 120px;
+  height: 120px;
+  border: 1.5px dashed rgba(15, 23, 42, 0.08);
   border-radius: 50%;
   pointer-events: none;
   z-index: 3;
@@ -166,10 +161,10 @@
 /* MAP MARKER: USER POSITION */
 .userMarker {
   position: absolute;
-  top: 75%;
-  left: 35%;
+  top: 68%;
+  left: 32%;
   transform: translate(-50%, -50%);
-  z-index: 20;
+  z-index: 25;
 }
 
 .userMarkerPing {
@@ -186,51 +181,45 @@
 }
 
 .userMarkerDot {
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
   background: #2563eb;
   border-radius: 50%;
   border: 2px solid white;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
-  color: white;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
 }
 
 .spinSlow {
-  animation: rotateCompass 12s linear infinite;
-}
-
-@keyframes rotateCompass {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  color: white;
 }
 
 .userLabel {
   position: absolute;
-  top: 28px;
+  top: 30px;
   left: 50%;
   transform: translateX(-50%);
   background: #1e293b;
   color: white;
-  font-size: 0.55rem;
-  font-weight: 800;
+  font-size: 0.52rem;
+  font-weight: 900;
   font-family: monospace;
-  padding: 2px 6px;
+  padding: 1.5px 5px;
   border-radius: 4px;
   white-space: nowrap;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.5px;
 }
 
-/* SVG PATH OVERLAYS */
+/* SVG PATH DRAWING */
 .svgOverlay {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 10;
+  z-index: 15;
 }
 
 .dangerPath {
@@ -238,57 +227,55 @@
 }
 
 @keyframes pulsePath {
-  from { opacity: 0.35; }
-  to { opacity: 0.65; }
+  from { opacity: 0.4; }
+  to { opacity: 0.7; }
 }
 
 .recommendedPath {
   stroke-dasharray: 6 4;
-  transition: all 0.5s ease;
-  opacity: 0.7;
+  animation: dashMove 1.5s linear infinite;
+}
+
+@keyframes dashMove {
+  to { stroke-dashoffset: -10; }
 }
 
 .pathActive {
-  stroke-dasharray: 0;
-  stroke: #0d9488;
-  opacity: 1;
-  animation: dashDirect 1.5s linear infinite;
+  stroke-dasharray: 0 !important;
+  animation: none !important;
 }
 
-@keyframes dashDirect {
-  to { stroke-dashoffset: -20; }
-}
-
-/* MAP COORD MARKERS */
+/* MAP MARKER A: DANGER OVERLOAD GHAT */
 .dangerMarker {
   position: absolute;
-  top: 45%;
-  left: 15%;
+  top: 38%;
+  left: 18%;
   transform: translate(-50%, -50%);
   z-index: 20;
 }
 
 .markerPulseRed {
   position: absolute;
-  inset: -3px;
-  background: rgba(239, 68, 68, 0.15);
-  border-radius: 12px;
+  inset: -4px;
+  background: rgba(239, 68, 68, 0.22);
+  border-radius: 8px;
   animation: beaconPulse 1.5s infinite alternate;
 }
 
 .dangerCardCompact {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   background: white;
   border: 1.5px solid #fca5a5;
-  padding: 6px 10px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);
+  padding: 5px 8px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.15);
 }
 
 .iconRed {
   color: #ef4444;
+  animation: beaconPulse 1.2s infinite alternate;
 }
 
 .markerText {
@@ -296,59 +283,55 @@
 }
 
 .markerName {
-  font-size: 0.65rem;
-  font-weight: 800;
+  font-size: 0.58rem;
+  font-weight: 850;
   color: #1e293b;
   margin: 0;
+  white-space: nowrap;
 }
 
 .markerMetaRed {
-  font-size: 0.55rem;
+  font-size: 0.48rem;
   font-weight: 900;
   font-family: monospace;
   color: #dc2626;
   margin: 0;
 }
 
+/* MAP MARKER B: AI OPTIMIZED GHAT */
 .optimalMarker {
   position: absolute;
-  top: 15%;
-  left: 60%;
+  top: 25%;
+  left: 58%;
   transform: translate(-50%, -50%);
   z-index: 20;
 }
 
 .markerPulseGreen {
   position: absolute;
-  inset: -3px;
-  background: rgba(16, 185, 129, 0.18);
+  inset: -4px;
+  background: rgba(13, 148, 136, 0.22);
   border-radius: 12px;
-  animation: beaconPulse 1.5s infinite alternate;
+  animation: glowPulse 2s infinite alternate;
 }
 
 .optimalCardCompact {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   background: white;
   border: 2px solid #10b981;
-  padding: 8px 12px;
-  border-radius: 14px;
-  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.18);
+  padding: 6px 10px;
+  border-radius: 12px;
+  box-shadow: 0 8px 18px rgba(13, 148, 136, 0.25);
 }
 
 .iconGreen {
   color: #10b981;
-  animation: bounceSmall 1.5s infinite;
-}
-
-@keyframes bounceSmall {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-2px); }
 }
 
 .markerMetaGreen {
-  font-size: 0.55rem;
+  font-size: 0.48rem;
   font-weight: 900;
   font-family: monospace;
   color: #059669;
@@ -356,59 +339,59 @@
   display: flex;
   align-items: center;
   gap: 4px;
+  white-space: nowrap;
 }
 
 .aiTagSmall {
-  background: #f5a623;
-  color: #0f172a;
-  padding: 0px 4px;
-  border-radius: 3px;
-  font-size: 0.5rem;
+  background: linear-gradient(135deg, #e8760a, #f5a623);
+  color: white;
+  font-size: 0.4rem;
   font-weight: 950;
-  font-family: 'Outfit', sans-serif;
-  letter-spacing: -0.2px;
+  padding: 0.5px 3px;
+  border-radius: 2px;
 }
 
-/* WARNING TEXT OVERLAY */
+/* WARNING OVERLAY METRIC */
 .warningOverlay {
-  width: 100%;
-  background: rgba(254, 242, 242, 0.95);
-  border: 1px solid #fee2e2;
-  border-radius: 16px;
-  padding: 10px 14px;
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  right: 12px;
+  background: rgba(13, 27, 62, 0.93); /* Dark translucent GPS banner */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 8px 12px;
   display: flex;
-  align-items: flex-start;
-  gap: 10px;
+  align-items: center;
+  gap: 8px;
   z-index: 30;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(8px);
 }
 
 .alertIcon {
   color: #ef4444;
   flex-shrink: 0;
-  margin-top: 1px;
+  animation: beaconPulse 1.2s infinite alternate;
 }
 
 .warningText {
-  font-size: 0.72rem;
-  color: #991b1b;
+  font-size: 0.62rem;
+  color: #e2e8f0;
   font-weight: 600;
-  line-height: 1.45;
+  line-height: 1.4;
   margin: 0;
+  text-align: left;
 }
 
 .warningText strong {
   font-weight: 850;
-  font-family: monospace;
-  letter-spacing: 0.2px;
+  color: white;
 }
 
 .divertLink {
-  color: #0d9488;
-  font-weight: 800;
-  text-decoration: underline;
-  text-decoration-style: wavy;
+  color: #10b981;
+  font-weight: 850;
 }
 
 /* DATA INFOGRAPHIC BENTO GRID */
@@ -418,7 +401,7 @@
   padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
   z-index: 30;
   box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.02);
 }
@@ -426,30 +409,22 @@
 .dangerBentoCard {
   border: 1px solid #fee2e2;
   background: linear-gradient(to right, rgba(254, 242, 242, 0.4), transparent);
-  border-radius: 16px;
-  padding: 12px 16px;
+  border-radius: 20px;
+  padding: 16px;
   opacity: 0.85;
-  transition: all 0.2s ease;
 }
 
 .bentoCardContent {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 }
 
 .bentoCardInfo {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  width: 68%;
-}
-
-.bentoCardInfoFull {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  width: 70%;
+  flex-grow: 1;
 }
 
 .bentoCardTitleRow {
@@ -459,133 +434,10 @@
 }
 
 .bulletRed {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: #ef4444;
-}
-
-.bentoCardTitle {
-  font-size: 0.75rem;
-  font-weight: 800;
-  color: #475569;
-  margin: 0;
-}
-
-.optimalCardTitle {
-  font-size: 0.82rem;
-  font-weight: 950;
-  color: #0f172a;
-  margin: 0;
-  letter-spacing: -0.2px;
-}
-
-.progressTrack {
-  width: 100%;
-  height: 10px;
-  background: #f1f5f9;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid #e2e8f0;
-  padding: 1.5px;
-}
-
-.progressBarRed {
-  height: 100%;
-  background: linear-gradient(to right, #ef4444, #f87171);
-  border-radius: 10px;
-}
-
-.progressBarGreen {
-  height: 100%;
-  background: linear-gradient(to right, #10b981, #34d399);
-  border-radius: 10px;
-}
-
-.bentoMetrics {
-  display: flex;
-  gap: 12px;
-  font-size: 0.65rem;
-  font-weight: 800;
-  font-family: monospace;
-  color: #64748b;
-}
-
-.metricText {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.metricTextRed {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  color: #ef4444;
-}
-
-.metricTextGreen {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  color: #10b981;
-}
-
-.metricTextSaffron {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  color: #e8760a;
-}
-
-.bentoBadgeCol {
-  text-align: right;
-}
-
-.avoidBadge {
-  font-size: 0.65rem;
-  font-weight: 950;
-  font-family: monospace;
-  background: rgba(239, 68, 68, 0.08);
-  border: 1.5px solid #fca5a5;
-  color: #ef4444;
-  padding: 3px 8px;
-  border-radius: 6px;
-  letter-spacing: 0.5px;
-}
-
-.badgeSub {
-  font-size: 0.55rem;
-  color: #94a3b8;
-  font-weight: 600;
-  margin: 4px 0 0 0;
-}
-
-/* CARD 2: PREMIUM AI RECOMMENDATION TARGET */
-.optimalBentoCard {
-  border: 1.5px solid #a7f3d0;
-  background: linear-gradient(to right, rgba(209, 250, 229, 0.25), transparent);
-  border-radius: 20px;
-  padding: 16px;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.optimalActive {
-  border-color: #fbbf24;
-  box-shadow: 0 8px 24px rgba(245, 166, 35, 0.08);
-}
-
-.bentoCardContentCol {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.optimalCardTop {
-  display: flex;
-  justify-content: space-between;
 }
 
 .bulletGreen {
@@ -596,47 +448,173 @@
   animation: beaconPulse 1.2s infinite alternate;
 }
 
+.bentoCardTitle {
+  font-size: 0.82rem;
+  font-weight: 900;
+  color: #475569;
+  margin: 0;
+}
+
+.progressTrack {
+  width: 100%;
+  height: 6px;
+  background: #f1f5f9;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progressBarRed {
+  height: 100%;
+  background-color: #ef4444;
+  border-radius: 3px;
+}
+
+.progressBarGreen {
+  height: 100%;
+  background-color: #10b981;
+  border-radius: 3px;
+}
+
+.bentoMetrics {
+  display: flex;
+  gap: 14px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  font-family: monospace;
+  color: #64748b;
+}
+
+.metricTextRed {
+  color: #ef4444;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.metricTextGreen {
+  color: #10b981;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.metricText {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.metricTextSaffron {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #e8760a;
+}
+
+.bentoBadgeCol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  margin-left: 16px;
+}
+
+.avoidBadge {
+  font-size: 0.52rem;
+  font-weight: 950;
+  background: #fee2e2;
+  color: #ef4444;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.badgeSub {
+  font-size: 0.45rem;
+  color: #94a3b8;
+  margin: 0;
+  font-weight: 800;
+}
+
+.optimalBentoCard {
+  border: 1.5px solid #a7f3d0;
+  background: linear-gradient(to right, rgba(209, 250, 229, 0.25), transparent);
+  border-radius: 20px;
+  padding: 16px;
+  transition: all 0.3s ease;
+}
+
+.optimalActive {
+  border-color: #fbbf24;
+  box-shadow: 0 8px 24px rgba(245, 166, 35, 0.08);
+}
+
+.bentoCardContentCol {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.optimalCardTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.bentoCardInfoFull {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-grow: 1;
+}
+
+.optimalCardTitle {
+  font-size: 0.82rem;
+  font-weight: 950;
+  color: #0f172a;
+  margin: 0;
+}
+
 .aiBadgeLabel {
   font-size: 0.52rem;
   font-weight: 950;
   letter-spacing: 0.5px;
-  background: linear-gradient(135deg, #e8760a, #f5a623);
-  color: white;
+  background: linear-gradient(135deg, #fbbf24, #f5a623);
+  color: #78350f;
   padding: 2px 6px;
   border-radius: 4px;
   font-family: monospace;
 }
 
 .optimalRightCol {
-  text-align: right;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: flex-end;
+  gap: 4px;
+  margin-left: 12px;
 }
 
 .busBadge {
-  font-size: 0.65rem;
-  font-weight: 800;
-  font-family: monospace;
-  background: rgba(16, 185, 129, 0.08);
-  border: 1.5px solid #a7f3d0;
-  color: #059669;
-  padding: 3px 8px;
-  border-radius: 6px;
   display: flex;
   align-items: center;
   gap: 4px;
+  font-size: 0.52rem;
+  font-weight: 900;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #10b981;
+  padding: 2px 6px;
+  border-radius: 12px;
+  font-family: monospace;
 }
 
 .distanceLabel {
-  font-size: 0.65rem;
+  font-size: 0.5rem;
+  font-weight: 850;
   color: #64748b;
-  font-weight: 750;
   margin: 0;
 }
 
-/* DYNAMIC HOLD TO ACTIVATE BUTTON */
 .actionButton {
   position: relative;
   width: 100%;
@@ -648,24 +626,15 @@
   letter-spacing: 0.8px;
   text-transform: uppercase;
   color: white;
-  background: linear-gradient(135deg, #e8760a 0%, #fb923c 100%); /* Saffron Gradient */
+  background: linear-gradient(135deg, #e8760a 0%, #fb923c 100%);
   cursor: pointer;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 15px rgba(232, 118, 10, 0.15);
   transition: all 0.2s ease;
-  user-select: none;
-}
-
-.actionButton:active {
-  transform: scale(0.99);
-}
-
-.actionActive {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%); /* Active Green */
-  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.15);
+  overflow: hidden;
+  z-index: 10;
 }
 
 .buttonFillState {
@@ -673,19 +642,24 @@
   left: 0;
   top: 0;
   bottom: 0;
-  background: rgba(255, 255, 255, 0.25);
-  transition: width 0.05s linear;
-  pointer-events: none;
+  background: rgba(255, 255, 255, 0.2);
+  transition: width 0.1s linear;
   z-index: 1;
+  pointer-events: none;
 }
 
 .buttonText {
   position: relative;
-  z-index: 10;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
+}
+
+.actionActive {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.15) !important;
 }
 
 .navigationIcon {
