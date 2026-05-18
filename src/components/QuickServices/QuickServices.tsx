@@ -159,7 +159,9 @@ const QuickServices: React.FC<QuickServicesProps> = ({ onSelectService }) => {
                   onSelectService('parking-finder');
                 } else if (service.id === 5 && onSelectService) {
                   onSelectService('food-water');
-                } else if ((service.id === 8 || service.id === 9 || service.target === 'emergency') && onSelectService) {
+                } else if (service.id === 8 && onSelectService) {
+                  onSelectService('toilets');
+                } else if ((service.id === 9 || service.target === 'emergency') && onSelectService) {
                   onSelectService('emergency');
                 }
               }}

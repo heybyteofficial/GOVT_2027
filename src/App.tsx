@@ -12,6 +12,7 @@ import LiveTransport from './components/LiveTransport/LiveTransport';
 import ParkingFinder from './components/ParkingFinder/ParkingFinder';
 import FoodWaterHubs from './components/FoodWaterHubs/FoodWaterHubs';
 import EmergencyGrid from './components/EmergencyGrid/EmergencyGrid';
+import SmartToilets from './components/SmartToilets/SmartToilets';
 import BottomNav from './components/BottomNav/BottomNav';
 import './index.css';
 
@@ -41,6 +42,8 @@ function App() {
           <FoodWaterHubs onBack={() => setActiveTab('home')} />
         ) : activeTab === 'emergency' ? (
           <EmergencyGrid onBack={() => setActiveTab('home')} />
+        ) : activeTab === 'toilets' ? (
+          <SmartToilets onBack={() => setActiveTab('home')} />
         ) : activeTab === 'map' ? (
           <PilgrimMap />
         ) : activeTab === 'updates' ? (
