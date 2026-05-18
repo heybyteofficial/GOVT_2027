@@ -241,8 +241,9 @@
   }
   .floatingContainer {
     position: absolute;
-    top: 90px; /* Moved down */
-    right: 16px;
+    top: auto;
+    bottom: 80px; /* Stacked above crowd banner */
+    right: 12px;
     margin: 0;
     z-index: 50;
   }
