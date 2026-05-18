@@ -11,6 +11,7 @@ import GhatRecommendation from './components/GhatRecommendation/GhatRecommendati
 import EmergencyPage from './components/EmergencyPage/EmergencyPage';
 import LiveTransport from './components/LiveTransport/LiveTransport';
 import ParkingFinder from './components/ParkingFinder/ParkingFinder';
+import FoodWaterHubs from './components/FoodWaterHubs/FoodWaterHubs';
 import BottomNav from './components/BottomNav/BottomNav';
 import './index.css';
 
@@ -36,6 +37,8 @@ function App() {
           <LiveTransport onBack={() => setActiveTab('home')} />
         ) : activeTab === 'parking-finder' ? (
           <ParkingFinder onBack={() => setActiveTab('home')} />
+        ) : activeTab === 'food-water' ? (
+          <FoodWaterHubs onBack={() => setActiveTab('home')} />
         ) : activeTab === 'emergency' ? (
           <EmergencyPage onBack={() => setActiveTab('home')} />
         ) : activeTab === 'map' ? (
