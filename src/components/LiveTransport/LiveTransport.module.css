@@ -1,7 +1,7 @@
 .outerContainer {
   position: relative;
   min-height: 100vh;
-  background-color: #f8fafc; /* Light Slate-50 terrain canvas */
+  background-color: #f8fafc; /* Professional Light Slate-50 background */
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -11,7 +11,7 @@
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.03);
 }
 
-/* FIXED COMPACT HEADER */
+/* FIXED HUD HEADER */
 .header {
   padding: 14px 16px;
   display: flex;
@@ -99,37 +99,32 @@
   letter-spacing: 0.8px;
 }
 
-/* VISUAL MAP SYSTEM - High Fidelity Photo Background */
-.mapContainer {
+/* REAL-TIME TRANSIT PIPELINE - High Fidelity Google Maps background */
+.pipelineContainer {
   position: relative;
-  flex: 1;
-  min-height: 380px;
-  background-image: url('/ghat-redirection.png');
+  height: 290px;
+  background-image: url('/rajahmundry-map.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   overflow: hidden;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   border-bottom: 1px solid #e2e8f0;
 }
 
-/* Semi-transparent dark overlay for high-trust premium glass feel */
-.mapContainer::before {
+/* Subtle semi-transparent ivory glass cover for Light Theme consistency */
+.pipelineContainer::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(248, 250, 252, 0.35); /* Ivory overlay to maintain light theme over map */
+  background: rgba(248, 250, 252, 0.38);
   pointer-events: none;
   z-index: 2;
 }
 
-.radarGrid {
+.gridOverlay {
   position: absolute;
   inset: 0;
-  opacity: 0.12;
+  opacity: 0.1;
   background-image: linear-gradient(to right, #0f172a 1px, transparent 1px),
                     linear-gradient(to bottom, #0f172a 1px, transparent 1px);
   background-size: 24px 24px;
@@ -142,9 +137,9 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 320px;
-  height: 320px;
-  border: 1.5px dashed rgba(15, 23, 42, 0.1);
+  width: 240px;
+  height: 240px;
+  border: 1.5px dashed rgba(15, 23, 42, 0.08);
   border-radius: 50%;
   pointer-events: none;
   z-index: 3;
@@ -155,27 +150,27 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 180px;
-  height: 180px;
-  border: 1.5px dashed rgba(15, 23, 42, 0.1);
+  width: 120px;
+  height: 120px;
+  border: 1.5px dashed rgba(15, 23, 42, 0.08);
   border-radius: 50%;
   pointer-events: none;
   z-index: 3;
 }
 
-/* MAP MARKER: USER POSITION */
-.userMarker {
+/* Central Hub Node */
+.depotNode {
   position: absolute;
-  top: 75%;
-  left: 35%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 20;
+  z-index: 25;
 }
 
-.userMarkerPing {
+.depotPing {
   position: absolute;
   inset: -6px;
-  background-color: rgba(37, 99, 235, 0.25);
+  background-color: rgba(37, 99, 235, 0.2);
   border-radius: 50%;
   animation: pingExpanded 2s infinite ease-out;
 }
@@ -185,9 +180,9 @@
   100% { transform: scale(2.2); opacity: 0; }
 }
 
-.userMarkerDot {
-  width: 24px;
-  height: 24px;
+.depotCircle {
+  width: 28px;
+  height: 28px;
   background: #2563eb;
   border-radius: 50%;
   border: 2px solid white;
@@ -195,35 +190,30 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+}
+
+.iconDepot {
   color: white;
 }
 
-.spinSlow {
-  animation: rotateCompass 12s linear infinite;
-}
-
-@keyframes rotateCompass {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.userLabel {
+.depotLabel {
   position: absolute;
-  top: 28px;
+  top: 32px;
   left: 50%;
   transform: translateX(-50%);
   background: #1e293b;
   color: white;
-  font-size: 0.55rem;
-  font-weight: 800;
+  font-size: 0.52rem;
+  font-weight: 850;
   font-family: monospace;
   padding: 2px 6px;
   border-radius: 4px;
   white-space: nowrap;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.5px;
 }
 
-/* SVG PATH OVERLAYS */
+/* SVG PIPELINES */
 .svgOverlay {
   position: absolute;
   inset: 0;
@@ -243,40 +233,63 @@
 }
 
 .recommendedPath {
-  stroke-dasharray: 6 4;
-  transition: all 0.5s ease;
-  opacity: 0.7;
-}
-
-.pathActive {
   stroke-dasharray: 0;
-  stroke: #0d9488;
-  opacity: 1;
-  animation: dashDirect 1.5s linear infinite;
+  opacity: 0.9;
 }
 
-@keyframes dashDirect {
-  to { stroke-dashoffset: -20; }
-}
-
-/* MAP COORD MARKERS */
-.dangerMarker {
+/* Flowing Bus on Route B (AI Route) */
+.flowingBus {
   position: absolute;
-  top: 45%;
-  left: 15%;
+  z-index: 20;
+  width: 20px;
+  height: 20px;
+  background: #0d9488;
+  border-radius: 50%;
+  border: 1.5px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(13, 148, 136, 0.35);
+  animation: flowAlongRoute 6s infinite linear;
+}
+
+.flowingBusDot {
+  position: absolute;
+  inset: -3px;
+  background: rgba(13, 148, 136, 0.2);
+  border-radius: 50%;
+  animation: beaconPulse 1.2s infinite alternate;
+}
+
+/* Animate flowing along quadratic bezier curve:
+   Starts at center (250, 140) -> Ends at (400, 62)
+   Curve parameters matched precisely */
+@keyframes flowAlongRoute {
+  0% { top: 130px; left: 240px; transform: rotate(-5deg); }
+  25% { top: 125px; left: 290px; transform: rotate(-15deg); }
+  50% { top: 112px; left: 335px; transform: rotate(-28deg); }
+  75% { top: 92px; left: 370px; transform: rotate(-40deg); }
+  100% { top: 52px; left: 390px; transform: rotate(-48deg); opacity: 0; }
+}
+
+/* Station Nodes */
+.stationNodeA {
+  position: absolute;
+  top: 78%;
+  left: 20%;
   transform: translate(-50%, -50%);
   z-index: 20;
 }
 
-.markerPulseRed {
+.nodeRedPulse {
   position: absolute;
   inset: -3px;
-  background: rgba(239, 68, 68, 0.15);
+  background: rgba(239, 68, 68, 0.2);
   border-radius: 12px;
   animation: beaconPulse 1.5s infinite alternate;
 }
 
-.dangerCardCompact {
+.stationBadgeRed {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -287,46 +300,46 @@
   box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15);
 }
 
-.iconRed {
+.iconWarning {
   color: #ef4444;
 }
 
-.markerText {
+.badgeTextCol {
   text-align: left;
 }
 
-.markerName {
-  font-size: 0.65rem;
+.stationName {
+  font-size: 0.62rem;
   font-weight: 800;
   color: #1e293b;
   margin: 0;
 }
 
-.markerMetaRed {
-  font-size: 0.55rem;
+.stationStatusRed {
+  font-size: 0.52rem;
   font-weight: 900;
   font-family: monospace;
   color: #dc2626;
   margin: 0;
 }
 
-.optimalMarker {
+.stationNodeB {
   position: absolute;
-  top: 15%;
-  left: 60%;
+  top: 22%;
+  left: 80%;
   transform: translate(-50%, -50%);
   z-index: 20;
 }
 
-.markerPulseGreen {
+.nodeGreenPulse {
   position: absolute;
   inset: -3px;
-  background: rgba(16, 185, 129, 0.18);
+  background: rgba(16, 185, 129, 0.2);
   border-radius: 12px;
   animation: beaconPulse 1.5s infinite alternate;
 }
 
-.optimalCardCompact {
+.stationBadgeGreen {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -334,10 +347,10 @@
   border: 2px solid #10b981;
   padding: 8px 12px;
   border-radius: 14px;
-  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.18);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.2);
 }
 
-.iconGreen {
+.iconCheck {
   color: #10b981;
   animation: bounceSmall 1.5s infinite;
 }
@@ -347,68 +360,46 @@
   50% { transform: translateY(-2px); }
 }
 
-.markerMetaGreen {
-  font-size: 0.55rem;
+.stationStatusGreen {
+  font-size: 0.52rem;
   font-weight: 900;
   font-family: monospace;
   color: #059669;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 4px;
 }
 
-.aiTagSmall {
-  background: #f5a623;
-  color: #0f172a;
-  padding: 0px 4px;
-  border-radius: 3px;
-  font-size: 0.5rem;
-  font-weight: 950;
-  font-family: 'Outfit', sans-serif;
-  letter-spacing: -0.2px;
-}
-
-/* WARNING TEXT OVERLAY */
-.warningOverlay {
-  width: 100%;
+/* Warning Info overlay */
+.alertOverlay {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  right: 12px;
   background: rgba(254, 242, 242, 0.95);
   border: 1px solid #fee2e2;
-  border-radius: 16px;
-  padding: 10px 14px;
+  border-radius: 14px;
+  padding: 8px 12px;
   display: flex;
-  align-items: flex-start;
-  gap: 10px;
+  align-items: center;
+  gap: 8px;
   z-index: 30;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
   backdrop-filter: blur(8px);
 }
 
-.alertIcon {
+.iconAlert {
   color: #ef4444;
   flex-shrink: 0;
-  margin-top: 1px;
 }
 
-.warningText {
-  font-size: 0.72rem;
+.alertText {
+  font-size: 0.65rem;
   color: #991b1b;
   font-weight: 600;
-  line-height: 1.45;
-  margin: 0;
+  line-height: 1.35;
 }
 
-.warningText strong {
+.alertText strong {
   font-weight: 850;
-  font-family: monospace;
   letter-spacing: 0.2px;
-}
-
-.divertLink {
-  color: #0d9488;
-  font-weight: 800;
-  text-decoration: underline;
-  text-decoration-style: wavy;
 }
 
 /* DATA INFOGRAPHIC BENTO GRID */
@@ -418,151 +409,12 @@
   padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
   z-index: 30;
   box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.02);
 }
 
-.dangerBentoCard {
-  border: 1px solid #fee2e2;
-  background: linear-gradient(to right, rgba(254, 242, 242, 0.4), transparent);
-  border-radius: 16px;
-  padding: 12px 16px;
-  opacity: 0.85;
-  transition: all 0.2s ease;
-}
-
-.bentoCardContent {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.bentoCardInfo {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  width: 68%;
-}
-
-.bentoCardInfoFull {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  width: 70%;
-}
-
-.bentoCardTitleRow {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.bulletRed {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #ef4444;
-}
-
-.bentoCardTitle {
-  font-size: 0.75rem;
-  font-weight: 800;
-  color: #475569;
-  margin: 0;
-}
-
-.optimalCardTitle {
-  font-size: 0.82rem;
-  font-weight: 950;
-  color: #0f172a;
-  margin: 0;
-  letter-spacing: -0.2px;
-}
-
-.progressTrack {
-  width: 100%;
-  height: 10px;
-  background: #f1f5f9;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid #e2e8f0;
-  padding: 1.5px;
-}
-
-.progressBarRed {
-  height: 100%;
-  background: linear-gradient(to right, #ef4444, #f87171);
-  border-radius: 10px;
-}
-
-.progressBarGreen {
-  height: 100%;
-  background: linear-gradient(to right, #10b981, #34d399);
-  border-radius: 10px;
-}
-
-.bentoMetrics {
-  display: flex;
-  gap: 12px;
-  font-size: 0.65rem;
-  font-weight: 800;
-  font-family: monospace;
-  color: #64748b;
-}
-
-.metricText {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.metricTextRed {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  color: #ef4444;
-}
-
-.metricTextGreen {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  color: #10b981;
-}
-
-.metricTextSaffron {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  color: #e8760a;
-}
-
-.bentoBadgeCol {
-  text-align: right;
-}
-
-.avoidBadge {
-  font-size: 0.65rem;
-  font-weight: 950;
-  font-family: monospace;
-  background: rgba(239, 68, 68, 0.08);
-  border: 1.5px solid #fca5a5;
-  color: #ef4444;
-  padding: 3px 8px;
-  border-radius: 6px;
-  letter-spacing: 0.5px;
-}
-
-.badgeSub {
-  font-size: 0.55rem;
-  color: #94a3b8;
-  font-weight: 600;
-  margin: 4px 0 0 0;
-}
-
-/* CARD 2: PREMIUM AI RECOMMENDATION TARGET */
-.optimalBentoCard {
+.optimalCard {
   border: 1.5px solid #a7f3d0;
   background: linear-gradient(to right, rgba(209, 250, 229, 0.25), transparent);
   border-radius: 20px;
@@ -572,20 +424,27 @@
   overflow: hidden;
 }
 
-.optimalActive {
+.purchasedGlow {
   border-color: #fbbf24;
   box-shadow: 0 8px 24px rgba(245, 166, 35, 0.08);
 }
 
-.bentoCardContentCol {
+.optimalContentCol {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
 }
 
-.optimalCardTop {
+.cardHeaderRow {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.cardHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .bulletGreen {
@@ -596,7 +455,15 @@
   animation: beaconPulse 1.2s infinite alternate;
 }
 
-.aiBadgeLabel {
+.cardTitle {
+  font-size: 0.82rem;
+  font-weight: 950;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+.aiBadge {
   font-size: 0.52rem;
   font-weight: 950;
   letter-spacing: 0.5px;
@@ -607,36 +474,88 @@
   font-family: monospace;
 }
 
-.optimalRightCol {
-  text-align: right;
+/* Capacity meter styling */
+.capacityWrapper {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-end;
+  gap: 6px;
 }
 
-.busBadge {
+.segmentedMeter {
+  display: flex;
+  gap: 3px;
+  width: 100%;
+  height: 10px;
+}
+
+.meterSegment {
+  flex: 1;
+  height: 100%;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 2px;
+}
+
+.segmentFilled {
+  background: #10b981;
+  border-color: #059669;
+}
+
+.segmentFilledRed {
+  background: #ef4444;
+  border-color: #dc2626;
+}
+
+.capacityText {
+  font-size: 0.72rem;
+  font-weight: 950;
+  color: #059669;
+}
+
+.capacityTextRed {
+  font-size: 0.72rem;
+  font-weight: 950;
+  color: #dc2626;
+}
+
+/* Telemetry row styling */
+.telemetryRow {
+  display: flex;
+  gap: 16px;
   font-size: 0.65rem;
   font-weight: 800;
   font-family: monospace;
-  background: rgba(16, 185, 129, 0.08);
-  border: 1.5px solid #a7f3d0;
-  color: #059669;
-  padding: 3px 8px;
-  border-radius: 6px;
+  color: #64748b;
+}
+
+.telemetryItem {
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
-.distanceLabel {
-  font-size: 0.65rem;
-  color: #64748b;
-  font-weight: 750;
-  margin: 0;
+.telemetryItemGreen {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #10b981;
 }
 
-/* DYNAMIC HOLD TO ACTIVATE BUTTON */
+.telemetryItemSaffron {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #e8760a;
+}
+
+.telemetryItemRed {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #ef4444;
+}
+
+/* Dynamic Action buttons */
 .actionButton {
   position: relative;
   width: 100%;
@@ -650,13 +569,11 @@
   color: white;
   background: linear-gradient(135deg, #e8760a 0%, #fb923c 100%); /* Saffron Gradient */
   cursor: pointer;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 15px rgba(232, 118, 10, 0.15);
   transition: all 0.2s ease;
-  user-select: none;
 }
 
 .actionButton:active {
@@ -668,26 +585,50 @@
   box-shadow: 0 4px 15px rgba(16, 185, 129, 0.15);
 }
 
-.buttonFillState {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  background: rgba(255, 255, 255, 0.25);
-  transition: width 0.05s linear;
-  pointer-events: none;
-  z-index: 1;
-}
-
 .buttonText {
-  position: relative;
-  z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
 }
 
-.navigationIcon {
+.checkIcon {
   animation: beaconPulse 1.2s infinite alternate;
+}
+
+/* Card 2: Congested convoy styling */
+.congestedCard {
+  border: 1px solid #fee2e2;
+  background: linear-gradient(to right, rgba(254, 242, 242, 0.4), transparent);
+  border-radius: 20px;
+  padding: 16px;
+  opacity: 0.85;
+}
+
+.bulletRed {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ef4444;
+}
+
+.congestedCardTitle {
+  font-size: 0.82rem;
+  font-weight: 900;
+  color: #475569;
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+.disabledBand {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #94a3b8;
+  font-size: 0.68rem;
+  font-weight: 900;
+  text-align: center;
+  letter-spacing: 0.5px;
 }

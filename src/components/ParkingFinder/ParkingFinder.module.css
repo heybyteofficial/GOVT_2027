@@ -1,0 +1,572 @@
+.outerContainer {
+  position: relative;
+  min-height: 100vh;
+  background-color: #f8fafc; /* Professional Light Slate-50 background for website coherence */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Outfit', sans-serif;
+  max-width: 500px;
+  margin: 0 auto;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.03);
+}
+
+/* COMPACT TELEMETRY HEADER */
+.header {
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e2e8f0;
+  background: white;
+  z-index: 50;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 50%;
+  color: #475569;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+}
+
+.backButton:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+  transform: translateX(-2px);
+}
+
+.headerTitle {
+  font-size: 0.95rem;
+  font-weight: 850;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+.headerSubtitle {
+  font-size: 0.58rem;
+  font-weight: 800;
+  color: #94a3b8;
+  font-family: monospace;
+  margin: 2px 0 0 0;
+  letter-spacing: 0.5px;
+}
+
+.liveBadge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  padding: 6px 12px;
+  border-radius: 20px;
+  box-shadow: 0 2px 6px rgba(16, 185, 129, 0.04);
+}
+
+.pulseGreen {
+  width: 6px;
+  height: 6px;
+  background-color: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #10b981;
+  animation: beaconPulse 1.6s infinite alternate;
+}
+
+@keyframes beaconPulse {
+  from { opacity: 0.7; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1.1); }
+}
+
+.liveText {
+  font-size: 0.6rem;
+  font-weight: 800;
+  color: #10b981;
+  letter-spacing: 0.8px;
+}
+
+/* REALISTIC NATIVE MAP INTERFACE */
+.mapContainer {
+  position: relative;
+  height: 290px;
+  background-image: url('/parking-map.png'); /* Google Maps Dark Mode base image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.gridOverlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.15;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* POLYGON A: PUSHKARA SECTOR GATE (Red Zone) */
+.polygonA {
+  position: absolute;
+  top: 48%;
+  left: 12%;
+  width: 110px;
+  height: 80px;
+  z-index: 10;
+}
+
+.polygonABoundary {
+  width: 100%;
+  height: 100%;
+  background: rgba(239, 68, 68, 0.25);
+  border: 2px solid #ef4444;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+}
+
+.calloutBubbleRed {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #ef4444;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 20px;
+  font-size: 0.52rem;
+  font-weight: 900;
+  font-family: monospace;
+  white-space: nowrap;
+  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
+}
+
+.iconWarning {
+  color: white;
+  animation: beaconPulse 1.2s infinite alternate;
+}
+
+/* POLYGON B: ARTS COLLEGE GROUNDS (Green Zone) */
+.polygonB {
+  position: absolute;
+  top: 15%;
+  left: 55%;
+  width: 140px;
+  height: 90px;
+  z-index: 10;
+}
+
+.polygonBBoundary {
+  width: 100%;
+  height: 100%;
+  background: rgba(13, 148, 136, 0.25);
+  border: 2.5px solid #0d9488;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(13, 148, 136, 0.3);
+  animation: glowPulse 2s infinite alternate;
+}
+
+@keyframes glowPulse {
+  from { border-color: #0d9488; box-shadow: 0 0 10px rgba(13, 148, 136, 0.2); }
+  to { border-color: #14b8a6; box-shadow: 0 0 25px rgba(13, 148, 136, 0.45); }
+}
+
+.calloutBubbleGreen {
+  position: absolute;
+  top: -26px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: #0d9488;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.52rem;
+  font-weight: 900;
+  font-family: monospace;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(13, 148, 136, 0.3);
+}
+
+.iconCheck {
+  color: white;
+}
+
+.calloutText {
+  letter-spacing: 0.5px;
+}
+
+/* Pulsing Blue User GPS Marker */
+.userMarker {
+  position: absolute;
+  top: 76%;
+  left: 24%;
+  transform: translate(-50%, -50%);
+  z-index: 25;
+}
+
+.userPing {
+  position: absolute;
+  inset: -6px;
+  background-color: rgba(37, 99, 235, 0.25);
+  border-radius: 50%;
+  animation: pingExpanded 2s infinite ease-out;
+}
+
+@keyframes pingExpanded {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+.userArrow {
+  width: 26px;
+  height: 26px;
+  background: #2563eb;
+  border-radius: 50%;
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+}
+
+.compassRotate {
+  color: white;
+  transform: rotate(45deg);
+}
+
+.userLabel {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1e293b;
+  color: white;
+  font-size: 0.52rem;
+  font-weight: 900;
+  font-family: monospace;
+  padding: 1.5px 5px;
+  border-radius: 4px;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+}
+
+/* SVG Overlay & Paths */
+.svgOverlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 15;
+}
+
+.vectorRoute {
+  stroke-dasharray: 6 4;
+  animation: dashMove 1.5s linear infinite;
+}
+
+@keyframes dashMove {
+  to { stroke-dashoffset: -10; }
+}
+
+/* Alert Telemetry Banner overlay */
+.alertBanner {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  right: 12px;
+  background: rgba(13, 27, 62, 0.93); /* Dark theme translucent overlay */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 30;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(8px);
+}
+
+.iconAlert {
+  color: #ef4444;
+  flex-shrink: 0;
+  animation: beaconPulse 1.2s infinite alternate;
+}
+
+.alertText {
+  font-size: 0.62rem;
+  color: #e2e8f0;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0;
+  text-align: left;
+}
+
+.alertText strong {
+  font-weight: 850;
+  color: white;
+}
+
+/* DATA INFOGRAPHIC BENTO STACK */
+.bentoSection {
+  background: white;
+  border-top: 1px solid #e2e8f0;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 30;
+  box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.02);
+}
+
+.optimalCard {
+  border: 1.5px solid #a7f3d0;
+  background: linear-gradient(to right, rgba(209, 250, 229, 0.25), transparent);
+  border-radius: 20px;
+  padding: 16px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.passGeneratedGlow {
+  border-color: #fbbf24;
+  box-shadow: 0 8px 24px rgba(245, 166, 35, 0.08);
+}
+
+.optimalContentCol {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cardHeaderRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cardHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bulletGreen {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  animation: beaconPulse 1.2s infinite alternate;
+}
+
+.cardTitle {
+  font-size: 0.82rem;
+  font-weight: 950;
+  color: #0f172a;
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+.aiBadge {
+  font-size: 0.52rem;
+  font-weight: 950;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, #fbbf24, #f5a623);
+  color: #78350f;
+  padding: 2.5px 6px;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+/* Horizontal Data Bar Track */
+.capacityWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.dataBarTrack {
+  position: relative;
+  width: 100%;
+  height: 24px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.dataBarFill {
+  height: 100%;
+  background: #10b981;
+  border-radius: 4px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dataBarFillRed {
+  height: 100%;
+  background: #ef4444;
+  border-radius: 4px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dataBarText {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 950;
+  color: #065f46;
+  pointer-events: none;
+  letter-spacing: 0.5px;
+}
+
+.dataBarTextRed {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  font-size: 0.68rem;
+  font-weight: 950;
+  color: #991b1b;
+  pointer-events: none;
+  letter-spacing: 0.5px;
+}
+
+/* Telemetry row styling */
+.telemetryRow {
+  display: flex;
+  gap: 16px;
+  font-size: 0.65rem;
+  font-weight: 800;
+  font-family: monospace;
+  color: #64748b;
+}
+
+.telemetryItem {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.telemetryItemGreen {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #10b981;
+}
+
+.telemetryItemSaffron {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #e8760a;
+}
+
+.telemetryItemRed {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #ef4444;
+}
+
+/* Dynamic Action buttons */
+.actionButton {
+  position: relative;
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  font-size: 0.72rem;
+  font-weight: 950;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: white;
+  background: linear-gradient(135deg, #e8760a 0%, #fb923c 100%); /* Saffron Gradient */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(232, 118, 10, 0.15);
+  transition: all 0.2s ease;
+}
+
+.actionButton:active {
+  transform: scale(0.99);
+}
+
+.actionActive {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%); /* Active Green */
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.15);
+}
+
+.buttonText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.checkIcon {
+  animation: beaconPulse 1.2s infinite alternate;
+}
+
+/* Card 2: Congested convoy styling */
+.congestedCard {
+  border: 1px solid #fee2e2;
+  background: linear-gradient(to right, rgba(254, 242, 242, 0.4), transparent);
+  border-radius: 20px;
+  padding: 16px;
+  opacity: 0.85;
+}
+
+.bulletRed {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ef4444;
+}
+
+.congestedCardTitle {
+  font-size: 0.82rem;
+  font-weight: 900;
+  color: #475569;
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+.disabledBand {
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #94a3b8;
+  font-size: 0.68rem;
+  font-weight: 900;
+  text-align: center;
+  letter-spacing: 0.5px;
+}

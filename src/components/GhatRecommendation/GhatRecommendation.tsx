@@ -1,5 +1,5 @@
-import React from 'react';
-import { ArrowLeft, Brain, Compass, ShieldAlert, Cpu, Navigation } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { ArrowLeft, Compass, Users, Clock, Flame, Navigation, AlertTriangle, CheckCircle, Bus, ShieldAlert } from 'lucide-react';
 import styles from './GhatRecommendation.module.css';
 
 interface GhatRecommendationProps {
@@ -7,113 +7,216 @@ interface GhatRecommendationProps {
 }
 
 const GhatRecommendation: React.FC<GhatRecommendationProps> = ({ onBack }) => {
+  const [isHolding, setIsHolding] = useState(false);
+  const [holdProgress, setHoldProgress] = useState(0);
+  const [routeActive, setRouteActive] = useState(false);
+  const timerRef = useRef<any>(null);
+
+  // Simulated Press & Hold progress timer for premium haptic interaction
+  useEffect(() => {
+    if (isHolding && holdProgress < 100) {
+      timerRef.current = setInterval(() => {
+        setHoldProgress((prev) => {
+          if (prev >= 100) {
+            clearInterval(timerRef.current);
+            setRouteActive(true);
+            return 100;
+          }
+          return prev + 4;
+        });
+      }, 50);
+    } else if (!isHolding) {
+      if (timerRef.current) clearInterval(timerRef.current);
+      setHoldProgress(0);
+    }
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [isHolding, holdProgress]);
+
   return (
-    <div className={styles.pageContainer}>
+    <div className={styles.outerContainer}>
       
-      {/* Back Button */}
-      <button className={styles.backButton} onClick={onBack}>
-        <ArrowLeft size={18} />
-        <span>Back to Home</span>
-      </button>
-
-      {/* Main Header */}
-      <div className={styles.header}>
-        <div className={styles.badgeWrapper}>
-          <Brain size={16} className={styles.brainIcon} />
-          <span className={styles.aiBadge}>AI ENGINE ACTIVE</span>
-        </div>
-        <h1 className={styles.title}>AI Ghat Recommendation</h1>
-        <p className={styles.subtitle}>
-          "We don't just show pilgrims where the crowds are — we tell them exactly where to go."
-        </p>
-      </div>
-
-      {/* Interactive AI Recommendation Alert (Matches Ref Image) */}
-      <div className={styles.alertCard}>
-        <div className={styles.alertHeader}>
-          <div className={styles.alertHeaderLeft}>
-            <ShieldAlert size={20} color="#dc2626" />
-            <h3 className={styles.alertTitle}>AI Redirection Alert</h3>
-          </div>
-          <span className={styles.liveIndicator}>CRITICAL CROWD</span>
-        </div>
-
-        <div className={styles.alertContent}>
-          <div className={styles.alertLineRed}>
-            <span className={styles.alertIcon}>🚨</span>
-            <p className={styles.alertText}>
-              <strong>Pushkara Ghat</strong> is <span className={styles.redText}>92% crowded</span> right now.
-            </p>
-          </div>
-          
-          <div className={styles.alertLineGreen}>
-            <span className={styles.alertIcon}>✅</span>
-            <p className={styles.alertText}>
-              <strong>Saraswati Ghat</strong> is safer — <span className={styles.greenText}>only 12 mins away</span> and <span className={styles.greenText}>18% crowd</span>.
-            </p>
-          </div>
-        </div>
-
-        <div className={styles.alertFooter}>
-          <p className={styles.footerSub}>Tap below to navigate. Your muhurtham window is still valid there.</p>
-          <button className={styles.navigateBtn}>
-            <Navigation size={16} />
-            Navigate to Saraswati Ghat
+      {/* FIXED COMPACT HEADER */}
+      <header className={styles.header}>
+        <div className={styles.headerLeft}>
+          <button className={styles.backButton} onClick={onBack} aria-label="Back">
+            <ArrowLeft size={18} />
           </button>
+          <div>
+            <h1 className={styles.headerTitle}>Nearby Bathing Ghats</h1>
+            <p className={styles.headerSubtitle}>RADIUS: 2.0KM • REGION 3</p>
+          </div>
         </div>
-      </div>
+        
+        <div className={styles.liveBadge}>
+          <span className={styles.pulseGreen} />
+          <span className={styles.liveText}>LIVE ICCC FEED</span>
+        </div>
+      </header>
 
-      {/* Visual Redirection Mockup Card */}
-      <div className={styles.mapCard}>
-        <div className={styles.mapFrame}>
-          <img 
-            src="/ghat-redirection.png" 
-            alt="AI Real-Time Redirection Map" 
-            className={styles.mapImage}
+      {/* VISUAL MAP SYSTEM - High Fidelity Photo Base */}
+      <div className={styles.mapContainer}>
+        {/* Techy HUD overlays on top of the original map background photo */}
+        <div className={styles.radarGrid} />
+        <div className={styles.radarRingOuter} />
+        <div className={styles.radarRingInner} />
+
+        {/* MAP MARKER: USER POSITION */}
+        <div className={styles.userMarker}>
+          <div className={styles.userMarkerPing} />
+          <div className={styles.userMarkerDot}>
+            <Compass size={12} className={styles.spinSlow} />
+          </div>
+          <span className={styles.userLabel}>YOU</span>
+        </div>
+
+        {/* SVG PATH DRAWING (Responsive Viewbox mapping coordinates on 500x380 viewport) */}
+        <svg className={styles.svgOverlay} viewBox="0 0 500 380" preserveAspectRatio="none">
+          {/* Path to Dangerous Ghat (Red) */}
+          <path 
+            d="M 175 285 Q 110 240 75 171" 
+            fill="none" 
+            stroke="#EF4444" 
+            strokeWidth="2.5" 
+            strokeDasharray="4 4"
+            className={styles.dangerPath}
           />
-          <div className={styles.mapOverlay}>
-            <div className={styles.pillGroup}>
-              <span className={styles.mapPillRed}>Sector 4: High Capacity</span>
-              <span className={styles.mapPillGreen}>Sector A: Optimal Flow</span>
-            </div>
-            <div className={styles.targetIndicator}>
-              <Compass size={18} color="white" />
-              <span>Rajahmundry AI Grid</span>
+          {/* Path to Safe Recommended Ghat (Green) */}
+          <path 
+            d="M 175 285 Q 260 210 300 57" 
+            fill="none" 
+            stroke="#0D9488" 
+            strokeWidth={routeActive ? "4.5" : "2.5"} 
+            strokeDasharray={routeActive ? "0" : "6 4"}
+            className={`${styles.recommendedPath} ${routeActive ? styles.pathActive : ''}`}
+          />
+        </svg>
+
+        {/* MAP MARKER A: DANGER OVERLOAD GHAT */}
+        <div className={styles.dangerMarker}>
+          <div className={styles.markerPulseRed} />
+          <div className={styles.dangerCardCompact}>
+            <AlertTriangle size={10} className={styles.iconRed} />
+            <div className={styles.markerText}>
+              <p className={styles.markerName}>Pushkara (350m)</p>
+              <p className={styles.markerMetaRed}>92% OVERLOAD</p>
             </div>
           </div>
+        </div>
+
+        {/* MAP MARKER B: AI OPTIMIZED GHAT */}
+        <div className={styles.optimalMarker}>
+          <div className={styles.markerPulseGreen} />
+          <div className={styles.optimalCardCompact}>
+            <CheckCircle size={11} className={styles.iconGreen} />
+            <div className={styles.markerText}>
+              <p className={styles.markerName}>Saraswati (1.2km)</p>
+              <p className={styles.markerMetaGreen}>
+                <span>18% SAFE STATE</span>
+                <span className={styles.aiTagSmall}>AI</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* TOP STATUS OVERLAY METRIC */}
+        <div className={styles.warningOverlay}>
+          <ShieldAlert size={16} className={styles.alertIcon} />
+          <p className={styles.warningText}>
+            <strong>CROWD BLOCKADE:</strong> High surge at your nearest node. Divert to <span className={styles.divertLink}>Saraswati Ghat</span> to access active safe slot windows.
+          </p>
         </div>
       </div>
 
-      {/* WHAT IT DOES Grid */}
-      <div className={styles.detailsSection}>
-        <h4 className={styles.sectionHeading}>WHAT IT DOES</h4>
-        <div className={styles.infoCard}>
-          <div className={styles.infoIconWrapper}>
-            <Cpu size={24} color="#a855f7" />
-          </div>
-          <div className={styles.infoText}>
-            <p className={styles.infoPara}>
-              The system continuously monitors all 12 ghats in real time using <strong>CCTV crowd-estimation feeds</strong>, GPS tracking data, and historical crowd movement patterns.
-            </p>
-            <p className={styles.infoPara}>
-              When a ghat crosses <strong>70% capacity</strong>, it doesn't just raise an alarm — it automatically identifies the next best ghat, calculates walking/travel times, verifies it matches the pilgrim's <strong>muhurtham window</strong>, and pushes a personalized redirect suggestion to every pilgrim in that sector.
-            </p>
+      {/* DATA INFOGRAPHIC BENTO GRID */}
+      <div className={styles.bentoSection}>
+        
+        {/* CARD 1: THE CRITICAL TRAP ZONE */}
+        <div className={styles.dangerBentoCard}>
+          <div className={styles.bentoCardContent}>
+            <div className={styles.bentoCardInfo}>
+              <div className={styles.bentoCardTitleRow}>
+                <div className={styles.bulletRed} />
+                <h2 className={styles.bentoCardTitle}>01. Pushkara Ghat</h2>
+              </div>
+              {/* Visual Progress Bar */}
+              <div className={styles.progressTrack}>
+                <div className={styles.progressBarRed} style={{ width: '92%' }} />
+              </div>
+              <div className={styles.bentoMetrics}>
+                <span className={styles.metricTextRed}><Users size={12} /> 92%</span>
+                <span className={styles.metricText}><Clock size={12} /> ~45m Wait</span>
+              </div>
+            </div>
+            <div className={styles.bentoBadgeCol}>
+              <span className={styles.avoidBadge}>AVOID</span>
+              <p className={styles.badgeSub}>RISK ALERT</p>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* WHY GOVERNMENT CAN'T MATCH IT */}
-      <div className={styles.edgeSection}>
-        <h4 className={styles.edgeHeading}>THE SYSTEM EDGE</h4>
-        <div className={styles.edgeCard}>
-          <h5 className={styles.edgeTitle}>Predictive Redirection vs. Reactive Monitoring</h5>
-          <p className={styles.edgePara}>
-            Standard government ICCC systems are built for <strong>monitoring and reporting</strong>, not behavioral redirection. They display crowd data to officials on massive screens.
-          </p>
-          <p className={styles.edgePara}>
-            This system acts on that data <strong>automatically and instantly</strong>. It moves pilgrims dynamically *before* a dangerous situation forms, entirely removing human intervention bottleneck.
-          </p>
+        {/* CARD 2: PREMIUM AI RECOMMENDATION TARGET */}
+        <div className={`${styles.optimalBentoCard} ${routeActive ? styles.optimalActive : ''}`}>
+          
+          <div className={styles.bentoCardContentCol}>
+            <div className={styles.optimalCardTop}>
+              <div className={styles.bentoCardInfoFull}>
+                <div className={styles.bentoCardTitleRow}>
+                  <div className={styles.bulletGreen} />
+                  <h2 className={styles.optimalCardTitle}>02. Saraswati Ghat</h2>
+                  <span className={styles.aiBadgeLabel}>AI CHOICE</span>
+                </div>
+                {/* Visual Progress Bar */}
+                <div className={styles.progressTrack}>
+                  <div className={styles.progressBarGreen} style={{ width: '18%' }} />
+                </div>
+                <div className={styles.bentoMetrics}>
+                  <span className={styles.metricTextGreen}><Users size={12} /> 18% SAFE</span>
+                  <span className={styles.metricText}><Clock size={12} /> 4m Wait</span>
+                  <span className={styles.metricTextSaffron}><Flame size={12} /> Muhurtham ✓</span>
+                </div>
+              </div>
+              
+              <div className={styles.optimalRightCol}>
+                <span className={styles.busBadge}>
+                  <Bus size={12} /> BUS: 4m
+                </span>
+                <p className={styles.distanceLabel}>1.2 KM AWAY</p>
+              </div>
+            </div>
+
+            {/* DYNAMIC HAPTIC ACTION PROGRESS TRACKER BUTTON */}
+            <button 
+              onMouseDown={() => setIsHolding(true)}
+              onMouseUp={() => setIsHolding(false)}
+              onMouseLeave={() => setIsHolding(false)}
+              onTouchStart={() => setIsHolding(true)}
+              onTouchEnd={() => setIsHolding(false)}
+              className={`${styles.actionButton} ${routeActive ? styles.actionActive : ''}`}
+            >
+              {/* Live Action Hold Fill State Background mapping */}
+              <div 
+                className={styles.buttonFillState} 
+                style={{ width: `${holdProgress}%` }}
+              />
+              
+              <span className={styles.buttonText}>
+                {routeActive ? (
+                  <>
+                    <Navigation size={13} className={styles.navigationIcon} /> 
+                    ROUTE ENGAGED • EN ROUTE
+                  </>
+                ) : isHolding ? (
+                  `HOLDING... ${holdProgress}%`
+                ) : (
+                  "HOLD TO ENGAGE ROUTING →"
+                )}
+              </span>
+            </button>
+          </div>
         </div>
+
       </div>
 
     </div>
