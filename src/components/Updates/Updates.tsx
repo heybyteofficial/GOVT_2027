@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Phone, Map, Navigation, MapPin, Clock, Info, CornerUpRight, Compass, Navigation2 } from 'lucide-react';
 import styles from './Updates.module.css';
 
@@ -38,7 +38,11 @@ const FirstAidIcon = () => (
   </svg>
 );
 
+type Category = 'camps' | 'firstaid' | 'ambulances';
+
 const Updates: React.FC = () => {
+  const [activeCategory, setActiveCategory] = useState<Category>('camps');
+
   return (
     <div className={styles.updatesContainer}>
       
@@ -54,15 +58,24 @@ const Updates: React.FC = () => {
 
       {/* Filter Chips */}
       <div className={styles.chipsContainer}>
-        <div className={`${styles.chip} ${styles.chipActive}`}>
+        <div 
+          className={`${styles.chip} ${activeCategory === 'camps' ? styles.chipActive : ''}`}
+          onClick={() => setActiveCategory('camps')}
+        >
           <MedicalCampIcon />
           <span>Medical Camps</span>
         </div>
-        <div className={styles.chip}>
+        <div 
+          className={`${styles.chip} ${activeCategory === 'firstaid' ? styles.chipActive : ''}`}
+          onClick={() => setActiveCategory('firstaid')}
+        >
           <FirstAidIcon />
           <span>First Aid</span>
         </div>
-        <div className={styles.chip}>
+        <div 
+          className={`${styles.chip} ${activeCategory === 'ambulances' ? styles.chipActive : ''}`}
+          onClick={() => setActiveCategory('ambulances')}
+        >
           <AmbulanceIcon />
           <span>Ambulances</span>
         </div>
@@ -77,110 +90,314 @@ const Updates: React.FC = () => {
       {/* Cards List */}
       <div className={styles.cardsList}>
         
-        {/* Card 1 */}
-        <div className={styles.supportCard}>
-          <div className={styles.cardHeader}>
-            <div className={styles.cardIconWrapper} style={{ backgroundColor: '#fef3c7' }}>
-              <MedicalCampIcon />
+        {activeCategory === 'camps' && (
+          <>
+            {/* Card 1 */}
+            <div className={styles.supportCard}>
+              <div className={styles.cardHeader}>
+                <div className={styles.cardIconWrapper} style={{ backgroundColor: '#fef3c7' }}>
+                  <MedicalCampIcon />
+                </div>
+                <div className={styles.cardTitleArea}>
+                  <h4 className={styles.cardTitle}>Govt. Medical Camp Alpha</h4>
+                  <p className={styles.cardSub}>Central Plaza, Sector 4</p>
+                </div>
+                <div className={styles.greenBadge}>
+                  3 DOCTORS AVAILABLE
+                </div>
+              </div>
+              <div className={styles.cardDetails}>
+                <div className={styles.detailItem}>
+                  <MapPin size={14} color="#64748b" />
+                  <span>450m away</span>
+                </div>
+                <div className={styles.detailItem} style={{ color: '#d97706' }}>
+                  <Clock size={14} color="#d97706" />
+                  <span style={{ fontWeight: 700 }}>Queue: 5 mins</span>
+                </div>
+              </div>
+              <div className={styles.cardActions}>
+                <button className={`${styles.primaryBtn} ${styles.btnNavy}`}>
+                  <Phone size={16} />
+                  Call Now
+                </button>
+                <button className={styles.secondaryBtn}>
+                  <CornerUpRight size={18} color="#334155" />
+                </button>
+              </div>
             </div>
-            <div className={styles.cardTitleArea}>
-              <h4 className={styles.cardTitle}>Govt. Medical Camp Alpha</h4>
-              <p className={styles.cardSub}>Central Plaza, Sector 4</p>
-            </div>
-            <div className={styles.greenBadge}>
-              3 DOCTORS AVAILABLE
-            </div>
-          </div>
-          
-          <div className={styles.cardDetails}>
-            <div className={styles.detailItem}>
-              <MapPin size={14} color="#64748b" />
-              <span>450m away</span>
-            </div>
-            <div className={styles.detailItem} style={{ color: '#d97706' }}>
-              <Clock size={14} color="#d97706" />
-              <span style={{ fontWeight: 700 }}>Queue: 5 mins</span>
-            </div>
-          </div>
 
-          <div className={styles.cardActions}>
-            <button className={`${styles.primaryBtn} ${styles.btnNavy}`}>
-              <Phone size={16} />
-              Call Now
-            </button>
-            <button className={styles.secondaryBtn}>
-              <CornerUpRight size={18} color="#334155" />
-            </button>
-          </div>
-        </div>
+            {/* Card 2 */}
+            <div className={styles.supportCard}>
+              <div className={styles.cardHeader}>
+                <div className={styles.cardIconWrapper} style={{ backgroundColor: '#fef3c7' }}>
+                  <MedicalCampIcon />
+                </div>
+                <div className={styles.cardTitleArea}>
+                  <h4 className={styles.cardTitle}>Central Base Camp</h4>
+                  <p className={styles.cardSub}>Near Main Shrine Entrance</p>
+                </div>
+                <div className={styles.greenBadge} style={{ background: '#ffedd5', color: '#c2410c' }}>
+                  MODERATE TRAFFIC
+                </div>
+              </div>
+              <div className={styles.cardDetails}>
+                <div className={styles.detailItem}>
+                  <MapPin size={14} color="#64748b" />
+                  <span>800m away</span>
+                </div>
+                <div className={styles.detailItem} style={{ color: '#d97706' }}>
+                  <Clock size={14} color="#d97706" />
+                  <span style={{ fontWeight: 700 }}>Queue: 15 mins</span>
+                </div>
+              </div>
+              <div className={styles.cardActions}>
+                <button className={`${styles.primaryBtn} ${styles.btnNavy}`}>
+                  <Phone size={16} />
+                  Call Now
+                </button>
+                <button className={styles.secondaryBtn}>
+                  <CornerUpRight size={18} color="#334155" />
+                </button>
+              </div>
+            </div>
 
-        {/* Card 2 */}
-        <div className={styles.supportCard}>
-          <div className={styles.cardHeader}>
-            <div className={styles.cardIconWrapper} style={{ backgroundColor: '#eff6ff' }}>
-              <AmbulanceIcon />
+            {/* Card 3 */}
+            <div className={styles.supportCard}>
+              <div className={styles.cardHeader}>
+                <div className={styles.cardIconWrapper} style={{ backgroundColor: '#fef3c7' }}>
+                  <MedicalCampIcon />
+                </div>
+                <div className={styles.cardTitleArea}>
+                  <h4 className={styles.cardTitle}>Riverfront Medical Hub</h4>
+                  <p className={styles.cardSub}>Ghat Sector C</p>
+                </div>
+                <div className={styles.greenBadge} style={{ background: '#fee2e2', color: '#b91c1c' }}>
+                  FULL CAPACITY
+                </div>
+              </div>
+              <div className={styles.cardDetails}>
+                <div className={styles.detailItem}>
+                  <MapPin size={14} color="#64748b" />
+                  <span>1.5km away</span>
+                </div>
+                <div className={styles.detailItem} style={{ color: '#dc2626' }}>
+                  <Clock size={14} color="#dc2626" />
+                  <span style={{ fontWeight: 700 }}>Queue: 45+ mins</span>
+                </div>
+              </div>
+              <div className={styles.cardActions}>
+                <button className={`${styles.primaryBtn} ${styles.btnNavy}`}>
+                  <Phone size={16} />
+                  Call Now
+                </button>
+                <button className={styles.secondaryBtn}>
+                  <CornerUpRight size={18} color="#334155" />
+                </button>
+              </div>
             </div>
-            <div className={styles.cardTitleArea}>
-              <h4 className={styles.cardTitle}>Ambulance Point 04</h4>
-              <p className={styles.cardSub}>West Gate Entry</p>
-            </div>
-          </div>
-          
-          <div className={styles.cardDetails}>
-            <div className={styles.detailItem}>
-              <MapPin size={14} color="#64748b" />
-              <span>1.2km away</span>
-            </div>
-            <div className={styles.detailItem} style={{ color: '#dc2626' }}>
-              <span style={{ fontSize: '14px', fontWeight: 900, marginRight: '2px' }}>*</span>
-              <span style={{ fontWeight: 700 }}>Priority High</span>
-            </div>
-          </div>
+          </>
+        )}
 
-          <div className={styles.cardActions}>
-            <button className={`${styles.primaryBtn} ${styles.btnRed}`}>
-              <Phone size={16} />
-              Dispatch Hub
-            </button>
-            <button className={styles.secondaryBtn}>
-              <Map size={18} color="#334155" />
-            </button>
-          </div>
-        </div>
+        {activeCategory === 'firstaid' && (
+          <>
+            {/* Card 1 */}
+            <div className={styles.supportCard}>
+              <div className={styles.cardHeader}>
+                <div className={styles.cardIconWrapper} style={{ backgroundColor: '#dcfce7' }}>
+                  <FirstAidIcon />
+                </div>
+                <div className={styles.cardTitleArea}>
+                  <h4 className={styles.cardTitle}>First Aid Post B7</h4>
+                  <p className={styles.cardSub}>Near Drinking Water Point</p>
+                </div>
+              </div>
+              <div className={styles.cardDetails}>
+                <div className={styles.detailItem}>
+                  <MapPin size={14} color="#64748b" />
+                  <span>200m away</span>
+                </div>
+                <div className={styles.detailItem} style={{ color: '#16a34a' }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span style={{ fontWeight: 700 }}>No Wait</span>
+                </div>
+              </div>
+              <div className={styles.cardActions}>
+                <button className={`${styles.primaryBtn} ${styles.btnNavy}`}>
+                  <Phone size={16} />
+                  Contact
+                </button>
+                <button className={styles.secondaryBtn}>
+                  <Navigation2 size={18} color="#334155" />
+                </button>
+              </div>
+            </div>
 
-        {/* Card 3 */}
-        <div className={styles.supportCard}>
-          <div className={styles.cardHeader}>
-            <div className={styles.cardIconWrapper} style={{ backgroundColor: '#dcfce7' }}>
-              <FirstAidIcon />
+            {/* Card 2 */}
+            <div className={styles.supportCard}>
+              <div className={styles.cardHeader}>
+                <div className={styles.cardIconWrapper} style={{ backgroundColor: '#dcfce7' }}>
+                  <FirstAidIcon />
+                </div>
+                <div className={styles.cardTitleArea}>
+                  <h4 className={styles.cardTitle}>Emergency Kiosk 12</h4>
+                  <p className={styles.cardSub}>Temple South Wall</p>
+                </div>
+              </div>
+              <div className={styles.cardDetails}>
+                <div className={styles.detailItem}>
+                  <MapPin size={14} color="#64748b" />
+                  <span>350m away</span>
+                </div>
+                <div className={styles.detailItem} style={{ color: '#d97706' }}>
+                  <Clock size={14} color="#d97706" />
+                  <span style={{ fontWeight: 700 }}>5 Min Wait</span>
+                </div>
+              </div>
+              <div className={styles.cardActions}>
+                <button className={`${styles.primaryBtn} ${styles.btnNavy}`}>
+                  <Phone size={16} />
+                  Contact
+                </button>
+                <button className={styles.secondaryBtn}>
+                  <Navigation2 size={18} color="#334155" />
+                </button>
+              </div>
             </div>
-            <div className={styles.cardTitleArea}>
-              <h4 className={styles.cardTitle}>First Aid Post B7</h4>
-              <p className={styles.cardSub}>Near Drinking Water Point</p>
-            </div>
-          </div>
-          
-          <div className={styles.cardDetails}>
-            <div className={styles.detailItem}>
-              <MapPin size={14} color="#64748b" />
-              <span>200m away</span>
-            </div>
-            <div className={styles.detailItem} style={{ color: '#16a34a' }}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              <span style={{ fontWeight: 700 }}>No Wait</span>
-            </div>
-          </div>
 
-          <div className={styles.cardActions}>
-            <button className={`${styles.primaryBtn} ${styles.btnNavy}`}>
-              <Phone size={16} />
-              Contact
-            </button>
-            <button className={styles.secondaryBtn}>
-              <Navigation2 size={18} color="#334155" />
-            </button>
-          </div>
-        </div>
+            {/* Card 3 */}
+            <div className={styles.supportCard}>
+              <div className={styles.cardHeader}>
+                <div className={styles.cardIconWrapper} style={{ backgroundColor: '#dcfce7' }}>
+                  <FirstAidIcon />
+                </div>
+                <div className={styles.cardTitleArea}>
+                  <h4 className={styles.cardTitle}>Mobile First Aid Unit</h4>
+                  <p className={styles.cardSub}>Patrolling Ghat Sector A</p>
+                </div>
+              </div>
+              <div className={styles.cardDetails}>
+                <div className={styles.detailItem}>
+                  <MapPin size={14} color="#64748b" />
+                  <span>50m away</span>
+                </div>
+                <div className={styles.detailItem} style={{ color: '#16a34a' }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span style={{ fontWeight: 700 }}>Available Now</span>
+                </div>
+              </div>
+              <div className={styles.cardActions}>
+                <button className={`${styles.primaryBtn} ${styles.btnNavy}`}>
+                  <Phone size={16} />
+                  Contact
+                </button>
+                <button className={styles.secondaryBtn}>
+                  <Navigation2 size={18} color="#334155" />
+                </button>
+              </div>
+            </div>
+          </>
+        )}
+
+        {activeCategory === 'ambulances' && (
+          <>
+            {/* Card 1 */}
+            <div className={styles.supportCard}>
+              <div className={styles.cardHeader}>
+                <div className={styles.cardIconWrapper} style={{ backgroundColor: '#eff6ff' }}>
+                  <AmbulanceIcon />
+                </div>
+                <div className={styles.cardTitleArea}>
+                  <h4 className={styles.cardTitle}>Ambulance Point 04</h4>
+                  <p className={styles.cardSub}>West Gate Entry</p>
+                </div>
+              </div>
+              <div className={styles.cardDetails}>
+                <div className={styles.detailItem}>
+                  <MapPin size={14} color="#64748b" />
+                  <span>1.2km away</span>
+                </div>
+                <div className={styles.detailItem} style={{ color: '#dc2626' }}>
+                  <span style={{ fontSize: '14px', fontWeight: 900, marginRight: '2px' }}>*</span>
+                  <span style={{ fontWeight: 700 }}>Priority High</span>
+                </div>
+              </div>
+              <div className={styles.cardActions}>
+                <button className={`${styles.primaryBtn} ${styles.btnRed}`}>
+                  <Phone size={16} />
+                  Dispatch Hub
+                </button>
+                <button className={styles.secondaryBtn}>
+                  <Map size={18} color="#334155" />
+                </button>
+              </div>
+            </div>
+
+            {/* Card 2 */}
+            <div className={styles.supportCard}>
+              <div className={styles.cardHeader}>
+                <div className={styles.cardIconWrapper} style={{ backgroundColor: '#eff6ff' }}>
+                  <AmbulanceIcon />
+                </div>
+                <div className={styles.cardTitleArea}>
+                  <h4 className={styles.cardTitle}>Advanced Life Support</h4>
+                  <p className={styles.cardSub}>Highway Connector Unit</p>
+                </div>
+              </div>
+              <div className={styles.cardDetails}>
+                <div className={styles.detailItem}>
+                  <MapPin size={14} color="#64748b" />
+                  <span>2.0km away</span>
+                </div>
+                <div className={styles.detailItem} style={{ color: '#d97706' }}>
+                  <span style={{ fontSize: '14px', fontWeight: 900, marginRight: '2px' }}>*</span>
+                  <span style={{ fontWeight: 700 }}>Dispatched</span>
+                </div>
+              </div>
+              <div className={styles.cardActions}>
+                <button className={`${styles.primaryBtn} ${styles.btnRed}`}>
+                  <Phone size={16} />
+                  Dispatch Hub
+                </button>
+                <button className={styles.secondaryBtn}>
+                  <Map size={18} color="#334155" />
+                </button>
+              </div>
+            </div>
+
+            {/* Card 3 */}
+            <div className={styles.supportCard}>
+              <div className={styles.cardHeader}>
+                <div className={styles.cardIconWrapper} style={{ backgroundColor: '#eff6ff' }}>
+                  <AmbulanceIcon />
+                </div>
+                <div className={styles.cardTitleArea}>
+                  <h4 className={styles.cardTitle}>Rapid Response Bike</h4>
+                  <p className={styles.cardSub}>Inner Temple Ring</p>
+                </div>
+              </div>
+              <div className={styles.cardDetails}>
+                <div className={styles.detailItem}>
+                  <MapPin size={14} color="#64748b" />
+                  <span>100m away</span>
+                </div>
+                <div className={styles.detailItem} style={{ color: '#16a34a' }}>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span style={{ fontWeight: 700 }}>On Standby</span>
+                </div>
+              </div>
+              <div className={styles.cardActions}>
+                <button className={`${styles.primaryBtn} ${styles.btnRed}`}>
+                  <Phone size={16} />
+                  Dispatch Hub
+                </button>
+                <button className={styles.secondaryBtn}>
+                  <Map size={18} color="#334155" />
+                </button>
+              </div>
+            </div>
+          </>
+        )}
 
       </div>
 

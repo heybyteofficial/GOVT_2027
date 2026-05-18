@@ -6,6 +6,7 @@ import QuickServices from './components/QuickServices/QuickServices';
 import WhatsAppAssistant from './components/WhatsAppAssistant/WhatsAppAssistant';
 import Profile from './components/Profile/Profile';
 import Updates from './components/Updates/Updates';
+import PilgrimMap from './components/PilgrimMap/PilgrimMap';
 import BottomNav from './components/BottomNav/BottomNav';
 import './index.css';
 
@@ -25,6 +26,8 @@ function App() {
               <WhatsAppAssistant />
             </div>
           </>
+        ) : activeTab === 'map' ? (
+          <PilgrimMap />
         ) : activeTab === 'updates' ? (
           <Updates />
         ) : activeTab === 'profile' ? (
