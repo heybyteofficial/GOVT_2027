@@ -1,0 +1,276 @@
+.profileContainer {
+  padding: 10px 20px 40px 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Profile Card */
+.profileCard {
+  background: white;
+  border-radius: 20px;
+  padding: 24px 20px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  position: relative;
+  border: 1px solid rgba(0,0,0,0.02);
+}
+
+.avatarWrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 12px;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #f8fafc;
+}
+
+.verifiedBadge {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  background: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.userName {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.userTags {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.verifiedTag {
+  background: #dcfce7;
+  color: #15803d;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 4px 8px;
+  border-radius: 12px;
+}
+
+.idTag {
+  font-size: 0.7rem;
+  color: #475569;
+  font-weight: 600;
+}
+
+.statsDivider {
+  width: 100%;
+  height: 1px;
+  background: #f1f5f9;
+  margin: 20px 0;
+}
+
+.statsGrid {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 10px;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+}
+
+.statValue {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.statLabel {
+  font-size: 0.65rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.statDividerVertical {
+  width: 1px;
+  height: 32px;
+  background: #f1f5f9;
+}
+
+/* Sections */
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: -12px;
+}
+
+.sectionTitle {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.viewAllBtn {
+  font-size: 0.7rem;
+  color: #b45309;
+  font-weight: 800;
+}
+
+/* Active Journey */
+.activeJourney {
+  background: #061c3f;
+  border-radius: 16px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(6, 28, 63, 0.15);
+}
+
+.progressBadge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #b45309;
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 12px;
+}
+
+.journeyTitle {
+  color: white;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-top: 16px;
+  margin-bottom: 4px;
+}
+
+.journeySub {
+  color: #94a3b8;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+/* Past Journeys */
+.pastJourneys {
+  display: flex;
+  gap: 12px;
+}
+
+.journeyCard {
+  background: white;
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  border: 1px solid rgba(0,0,0,0.02);
+}
+
+.journeyIconWrapper {
+  margin-bottom: 4px;
+}
+
+.journeyInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.journeyName {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+.journeyDate {
+  font-size: 0.65rem;
+  color: #64748b;
+  font-weight: 600;
+}
+
+/* Settings List */
+.settingsList {
+  background: white;
+  border-radius: 16px;
+  padding: 4px 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  border: 1px solid rgba(0,0,0,0.02);
+}
+
+.settingItem {
+  display: flex;
+  align-items: center;
+  padding: 16px 0;
+  cursor: pointer;
+}
+
+.settingIconWrapper {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+}
+
+.settingLabel {
+  flex: 1;
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.chevron {
+  margin-left: auto;
+}
+
+.settingDivider {
+  width: 100%;
+  height: 1px;
+  background: #f1f5f9;
+}
+
+/* Logout Button */
+.logoutBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+  color: #ef4444;
+  font-weight: 800;
+  font-size: 0.95rem;
+  padding: 12px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+  border: 1px solid rgba(239, 68, 68, 0.1);
+}
