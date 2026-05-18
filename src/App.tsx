@@ -14,6 +14,7 @@ import FoodWaterHubs from './components/FoodWaterHubs/FoodWaterHubs';
 import EmergencyGrid from './components/EmergencyGrid/EmergencyGrid';
 import SmartToilets from './components/SmartToilets/SmartToilets';
 import TransitCamps from './components/TransitCamps/TransitCamps';
+import EmergencySOS from './components/EmergencySOS/EmergencySOS';
 import BottomNav from './components/BottomNav/BottomNav';
 import './index.css';
 
@@ -47,6 +48,8 @@ function App() {
           <SmartToilets onBack={() => setActiveTab('home')} />
         ) : activeTab === 'transit-camps' ? (
           <TransitCamps onBack={() => setActiveTab('home')} />
+        ) : activeTab === 'emergency-sos' ? (
+          <EmergencySOS onBack={() => setActiveTab('home')} />
         ) : activeTab === 'map' ? (
           <PilgrimMap />
         ) : activeTab === 'updates' ? (
