@@ -29,14 +29,15 @@ const BottomNav: React.FC<BottomNavProps> = ({ activeTab, onTabChange }) => {
           <span className={styles.label}>Map</span>
         </div>
 
-        {/* Center Logo */}
-        <div className={styles.centerLogoWrapper} onClick={() => onTabChange('home')} style={{cursor: 'pointer'}}>
-          <div className={styles.logoCircle}>
-            <img 
-              src="https://upload.wikimedia.org/wikipedia/commons/3/37/Emblem_of_Andhra_Pradesh.svg" 
-              alt="AP Emblem" 
-              className={styles.centerLogo}
-            />
+        {/* Emergency Button */}
+        <div className={styles.centerLogoWrapper} onClick={() => onTabChange('emergency')} style={{cursor: 'pointer'}}>
+          <div className={styles.emergencyCircle}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L1 21H23L12 2Z" fill="white" />
+              <path d="M12 8V14" stroke="#a30000" strokeWidth="2.5" strokeLinecap="round" />
+              <circle cx="12" cy="17" r="1.2" fill="#a30000" />
+            </svg>
+            <span className={styles.emergencyText}>EMERGENCY</span>
           </div>
         </div>
 

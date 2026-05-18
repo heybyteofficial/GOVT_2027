@@ -1,8 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Menu, Bell, ChevronDown } from 'lucide-react';
 import styles from './Header.module.css';
 
 const Header: React.FC = () => {
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [selectedLang, setSelectedLang] = useState({ code: 'telugu', label: 'తెలుగు' });
+
+  const languages = [
+    { code: 'telugu', label: 'తెలుగు' },
+    { code: 'english', label: 'English' },
+    { code: 'hindi', label: 'हिंदी' }
+  ];
+
+  const handleLanguageChange = (lang: { code: string; label: string }) => {
+    setSelectedLang(lang);
+    setShowDropdown(false);
+  };
+
   return (
     <header className={styles.headerWrapper}>
       <div className={styles.headerContainer}>
@@ -34,10 +48,33 @@ const Header: React.FC = () => {
             <span className={styles.badge}>12</span>
           </div>
 
-          <button className={styles.languageSelector}>
-            <span className={styles.teluguText}>తెలుగు</span>
-            <ChevronDown size={16} strokeWidth={2.5} />
-          </button>
+          <div className={styles.languageWrapper}>
+            <button 
+              className={styles.languageSelector}
+              onClick={() => setShowDropdown(!showDropdown)}
+            >
+              <span className={styles.teluguText}>{selectedLang.label}</span>
+              <ChevronDown 
+                size={16} 
+                strokeWidth={2.5} 
+                className={showDropdown ? styles.rotateChevron : ''} 
+              />
+            </button>
+
+            {showDropdown && (
+              <div className={styles.dropdownMenu}>
+                {languages.map((lang) => (
+                  <button
+                    key={lang.code}
+                    className={`${styles.dropdownItem} ${selectedLang.code === lang.code ? styles.activeItem : ''}`}
+                    onClick={() => handleLanguageChange(lang)}
+                  >
+                    {lang.label}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </header>

@@ -69,13 +69,49 @@ const Icons = {
       <rect x="18" y="16" width="2" height="4" fill="#10b981"/>
     </svg>
   ),
+  Ambulance: () => (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.svgIcon}>
+      <rect x="3" y="10" width="14" height="8" rx="1.5" fill="#ef4444"/>
+      <path d="M17 12 L21 12 L21 18 L17 18 Z" fill="#ef4444" opacity="0.8"/>
+      <path d="M10 12 V16 M8 14 H12" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+      <circle cx="6" cy="18" r="2" fill="#1e293b"/>
+      <circle cx="16" cy="18" r="2" fill="#1e293b"/>
+    </svg>
+  ),
+  MedicalHelp: () => (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.svgIcon}>
+      <circle cx="12" cy="12" r="11" fill="#10b981"/>
+      <path d="M12 7 V17 M7 12 H17" stroke="white" strokeWidth="3" strokeLinecap="round"/>
+    </svg>
+  ),
   LostFound: () => (
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.svgIcon}>
-      <circle cx="12" cy="12" r="11" fill="#ea580c"/>
-      <circle cx="11" cy="10" r="3" fill="white"/>
-      <path d="M7 16C7 13.7909 8.79086 12 11 12H11C13.2091 12 15 13.7909 15 16V17H7V16Z" fill="white"/>
-      <circle cx="16" cy="16" r="3" stroke="white" strokeWidth="1.5" fill="#ea580c"/>
-      <line x1="18.5" y1="18.5" x2="20.5" y2="20.5" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+      <rect x="4" y="9" width="13" height="10" rx="2" fill="#ea580c"/>
+      <circle cx="15" cy="9" r="3.5" fill="none" stroke="#ea580c" strokeWidth="2"/>
+      <line x1="17.5" y1="11.5" x2="20.5" y2="14.5" stroke="#ea580c" strokeWidth="2.5"/>
+      <path d="M8 14 H13" stroke="white" strokeWidth="1.5" strokeLinecap="round"/>
+    </svg>
+  ),
+  MissingChild: () => (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.svgIcon}>
+      <circle cx="12" cy="12" r="11" fill="#ec4899"/>
+      <circle cx="10" cy="9" r="2" fill="white"/>
+      <path d="M7 15 C7 13.5 8.5 13 10 13 C11.5 13 13 13.5 13 15" fill="white"/>
+      <circle cx="15" cy="15" r="3" stroke="white" strokeWidth="1.5" fill="#ec4899"/>
+      <line x1="17.5" y1="17.5" x2="20.5" y2="20.5" stroke="white" strokeWidth="1.5"/>
+    </svg>
+  ),
+  Hospitals: () => (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.svgIcon}>
+      <rect x="6" y="6" width="12" height="14" rx="2" fill="#2563eb"/>
+      <rect x="10" y="6" width="4" height="14" fill="white" opacity="0.3"/>
+      <path d="M12 10 V14 M10 12 H14" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+    </svg>
+  ),
+  Police: () => (
+    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className={styles.svgIcon}>
+      <path d="M12 2 C12 2 19 3 19 10 C19 16 12 21 12 21 C12 21 5 16 5 10 C5 3 12 2 12 2 Z" fill="#1e3a8a"/>
+      <polygon points="12,6 13.5,9.5 17,10 14.5,12.5 15,16 12,14.5 9,16 9.5,12.5 7,10 10.5,9.5" fill="#fbbf24"/>
     </svg>
   ),
 };
@@ -84,16 +120,23 @@ const services = [
   { id: 1, label: 'Find Nearby Ghat', icon: Icons.Ghat },
   { id: 2, label: 'Live Transport', icon: Icons.Transport },
   { id: 3, label: 'Parking Finder', icon: Icons.Parking },
-  { id: 4, label: 'Emergency SOS', icon: Icons.SOS },
   { id: 5, label: 'Food & Water', icon: Icons.Food },
-  { id: 6, label: 'Medical Help', icon: Icons.Medical },
   { id: 7, label: 'Temple Queue', icon: Icons.TempleQueue },
   { id: 8, label: 'Toilets', icon: Icons.Toilets },
   { id: 9, label: 'Accommodation', icon: Icons.Accommodation },
-  { id: 10, label: 'Lost & Found', icon: Icons.LostFound },
+  { id: 10, label: 'Ambulance', icon: Icons.Ambulance, target: 'emergency' },
+  { id: 11, label: 'Medical Help', icon: Icons.MedicalHelp, target: 'emergency' },
+  { id: 12, label: 'Lost & Found', icon: Icons.LostFound, target: 'emergency' },
+  { id: 13, label: 'Missing Child', icon: Icons.MissingChild, target: 'emergency' },
+  { id: 14, label: 'Hospitals', icon: Icons.Hospitals, target: 'emergency' },
+  { id: 15, label: 'Police & Distress', icon: Icons.Police, target: 'emergency' },
 ];
 
-const QuickServices: React.FC = () => {
+interface QuickServicesProps {
+  onSelectService?: (serviceName: string) => void;
+}
+
+const QuickServices: React.FC<QuickServicesProps> = ({ onSelectService }) => {
   return (
     <section className={styles.sectionWrapper}>
       <div className={styles.container}>
@@ -104,7 +147,18 @@ const QuickServices: React.FC = () => {
 
         <div className={styles.grid}>
           {services.map((service) => (
-            <div key={service.id} className={styles.card}>
+            <div 
+              key={service.id} 
+              className={styles.card}
+              onClick={() => {
+                if (service.id === 1 && onSelectService) {
+                  onSelectService('ghat-recommendation');
+                } else if (service.target === 'emergency' && onSelectService) {
+                  onSelectService('emergency');
+                }
+              }}
+              style={(service.id === 1 || service.target === 'emergency') ? { cursor: 'pointer' } : undefined}
+            >
               <div className={styles.iconWrapper}>
                 <service.icon />
               </div>

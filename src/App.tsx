@@ -7,6 +7,8 @@ import WhatsAppAssistant from './components/WhatsAppAssistant/WhatsAppAssistant'
 import Profile from './components/Profile/Profile';
 import Updates from './components/Updates/Updates';
 import PilgrimMap from './components/PilgrimMap/PilgrimMap';
+import GhatRecommendation from './components/GhatRecommendation/GhatRecommendation';
+import EmergencyPage from './components/EmergencyPage/EmergencyPage';
 import BottomNav from './components/BottomNav/BottomNav';
 import './index.css';
 
@@ -22,10 +24,14 @@ function App() {
             <Hero />
             <div style={{ position: 'relative', zIndex: 10 }}>
               <LiveStatus />
-              <QuickServices />
+              <QuickServices onSelectService={(service) => setActiveTab(service)} />
               <WhatsAppAssistant />
             </div>
           </>
+        ) : activeTab === 'ghat-recommendation' ? (
+          <GhatRecommendation onBack={() => setActiveTab('home')} />
+        ) : activeTab === 'emergency' ? (
+          <EmergencyPage onBack={() => setActiveTab('home')} />
         ) : activeTab === 'map' ? (
           <PilgrimMap />
         ) : activeTab === 'updates' ? (
