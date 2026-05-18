@@ -1,0 +1,531 @@
+.outerContainer {
+  position: relative;
+  min-height: 100vh;
+  background-color: #f4f6f9; /* High-Status Light Slate Background */
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Outfit', sans-serif;
+  max-width: 500px;
+  margin: 0 auto;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
+  color: #0d1b3e; /* Deep Imperial Navy text */
+}
+
+/* FIXED HUD HEADER */
+.header {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e2e8f0;
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: white;
+  border: 1px solid #cbd5e1;
+  border-radius: 50%;
+  color: #475569;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+}
+
+.backButton:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+  transform: translateX(-2px);
+}
+
+.headerTitle {
+  font-size: 1rem;
+  font-weight: 900;
+  color: #0d1b3e;
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+.headerSubtitle {
+  font-size: 0.58rem;
+  font-weight: 800;
+  color: #64748b;
+  font-family: monospace;
+  margin: 2px 0 0 0;
+  letter-spacing: 0.8px;
+}
+
+.icccBadge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+.pulseGreen {
+  width: 6px;
+  height: 6px;
+  background-color: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #10b981;
+  animation: beaconPulse 1.6s infinite alternate;
+}
+
+@keyframes beaconPulse {
+  from { opacity: 0.7; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1.1); }
+}
+
+.icccText {
+  font-size: 0.58rem;
+  font-weight: 900;
+  color: #059669;
+  letter-spacing: 0.8px;
+  font-family: monospace;
+}
+
+/* PROFILE-ADAPTIVE OVERLAY PANEL */
+.twinPanel {
+  background: rgba(13, 27, 62, 0.05); /* Soft 5% navy tint */
+  border-bottom: 1px solid rgba(13, 27, 62, 0.08);
+  padding: 12px 16px;
+  display: flex;
+  align-items: start;
+  gap: 10px;
+}
+
+.twinIcon {
+  color: #0d9488;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.twinText {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #475569;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.twinStrong {
+  color: #0d1b3e;
+  font-weight: 900;
+}
+
+/* ACTIVE INVENTORY BENTO LAYER */
+.bentoContainer {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex-grow: 1;
+}
+
+/* COMPONENT 1: AI RECOMMENDED */
+.optimalCard {
+  background: white;
+  border: 2.5px solid #0d9488; /* Thick Emerald Border */
+  box-shadow: 0 10px 30px rgba(13, 148, 136, 0.06);
+  border-radius: 20px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.optimalCard:active {
+  transform: scale(0.995);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.cardHeaderLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.campusType {
+  font-size: 0.58rem;
+  font-weight: 900;
+  color: #94a3b8;
+  font-family: monospace;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+.campusName {
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: #0d1b3e;
+  margin: 0;
+}
+
+.aiBadge {
+  font-size: 0.5rem;
+  font-weight: 950;
+  letter-spacing: 0.5px;
+  background: linear-gradient(135deg, #e8760a, #f5a623);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 6px;
+  box-shadow: 0 3px 8px rgba(232, 118, 10, 0.15);
+  font-family: monospace;
+  white-space: nowrap;
+}
+
+.occupancyBadge {
+  font-size: 0.5rem;
+  font-weight: 950;
+  letter-spacing: 0.5px;
+  background: rgba(245, 166, 35, 0.1);
+  color: #d97706;
+  border: 1px solid rgba(245, 166, 35, 0.25);
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-family: monospace;
+  white-space: nowrap;
+}
+
+/* Segmented progress meter bar */
+.segmentedProgress {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 4px;
+  width: 100%;
+  height: 12px;
+  margin: 4px 0;
+}
+
+.progressBlock {
+  height: 100%;
+  background: white;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 3px;
+}
+
+.progressBlockFilled {
+  background: #0d9488;
+  border-color: #0d9488;
+  box-shadow: 0 2px 4px rgba(13, 148, 136, 0.1);
+}
+
+/* Telemetry lists styling */
+.telemetryGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-top: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
+  padding: 14px 0;
+}
+
+.telemetryRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.72rem;
+  font-weight: 900;
+  color: #0d1b3e;
+}
+
+.telemetryIcon {
+  color: #64748b;
+  flex-shrink: 0;
+}
+
+.telemetryLabel {
+  font-weight: 600;
+  color: #64748b;
+}
+
+.highlightTextGreen {
+  color: #0d9488;
+  font-weight: 900;
+}
+
+.highlightTextAmber {
+  color: #d97706;
+  font-weight: 900;
+}
+
+.highlightTextRed {
+  color: #dc2626;
+  font-weight: 900;
+}
+
+/* Facility capsules */
+.facilityRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 2px 0;
+}
+
+.facilityCapsule {
+  padding: 3px 8px;
+  background: #f1f5f9;
+  color: #475569;
+  border-radius: 6px;
+  font-size: 0.55rem;
+  font-weight: 800;
+  font-family: monospace;
+}
+
+/* Primary booking button baseline */
+.actionButton {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  font-size: 0.72rem;
+  font-weight: 950;
+  letter-spacing: 0.8px;
+  color: white;
+  background: #e8760a;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(232, 118, 10, 0.2);
+  transition: all 0.15s ease;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.actionButton:active {
+  transform: scale(0.99);
+  background: #cf6907;
+}
+
+/* COMPONENT 2: CONGESTED SURGE ALERT */
+.congestedCard {
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid #f5a623; /* Thick Amber Border */
+  border-radius: 20px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  opacity: 0.75; /* Reduced Opacity to 75% */
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.01);
+}
+
+.progressTrack {
+  width: 100%;
+  height: 10px;
+  background: #f1f5f9;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 2px;
+  border: 1px solid #e2e8f0;
+  margin: 4px 0;
+}
+
+.progressBar {
+  height: 100%;
+  background: linear-gradient(90deg, #f5a623, #d97706);
+  border-radius: 10px;
+}
+
+/* Dark-gray placeholder footer baseline */
+.lockedBand {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  background: #334155; /* Solid dark gray */
+  border: 1px solid #1e293b;
+  color: #f1f5f9;
+  font-size: 0.65rem;
+  font-weight: 900;
+  text-align: center;
+  letter-spacing: 0.2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  text-transform: uppercase;
+}
+
+/* POPUP BOOKING OVERLAY TICKET */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 27, 62, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  z-index: 100;
+  backdrop-filter: blur(6px);
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modalCard {
+  width: 100%;
+  max-width: 380px;
+  background: white;
+  border: 2px solid #0d9488;
+  border-radius: 24px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 20px 45px rgba(13, 27, 62, 0.15);
+  position: relative;
+  animation: scaleUp 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  color: #0d1b3e;
+}
+
+@keyframes scaleUp {
+  from { transform: scale(0.92); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.modalCloseButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.modalCloseButton:hover {
+  background: #e2e8f0;
+  color: #0d1b3e;
+}
+
+.modalTitle {
+  font-size: 1rem;
+  font-weight: 900;
+  color: #0d1b3e;
+  margin: 12px 0 4px 0;
+}
+
+.modalSubtitle {
+  font-size: 0.58rem;
+  color: #0d9488;
+  font-weight: 900;
+  font-family: monospace;
+  letter-spacing: 0.8px;
+}
+
+.qrWrapper {
+  margin: 18px 0;
+  background: white;
+  padding: 14px;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #e2e8f0;
+}
+
+.qrImage {
+  width: 140px;
+  height: 140px;
+  display: block;
+}
+
+.ticketStatus {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  color: #059669;
+  font-size: 0.52rem;
+  font-weight: 900;
+  font-family: monospace;
+  padding: 4px 10px;
+  border-radius: 12px;
+  letter-spacing: 0.5px;
+}
+
+.ticketDetails {
+  width: 100%;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 14px;
+  padding: 12px;
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ticketRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.62rem;
+}
+
+.ticketLabel {
+  color: #64748b;
+  font-weight: 800;
+}
+
+.ticketValue {
+  color: #0d1b3e;
+  font-weight: 900;
+  font-family: monospace;
+}
+
+.modalActionButton {
+  width: 100%;
+  margin-top: 16px;
+  padding: 12px;
+  border-radius: 12px;
+  border: none;
+  font-size: 0.7rem;
+  font-weight: 950;
+  letter-spacing: 0.5px;
+  color: white;
+  background: #0d9488;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2);
+  text-transform: uppercase;
+}
