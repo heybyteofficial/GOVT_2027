@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, Check, Sparkles, Clock, UtensilsCrossed, Droplet, QrCode, X } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Clock, UtensilsCrossed, Droplet, QrCode, AlertTriangle, Truck, X } from 'lucide-react';
 import styles from './FoodWaterHubs.module.css';
 
 interface FoodWaterHubsProps {
@@ -15,13 +15,13 @@ const FoodWaterHubs: React.FC<FoodWaterHubsProps> = ({ onBack }) => {
     setTimeout(() => {
       setGenerating(false);
       setTokenSpawned(true);
-    }, 900);
+    }, 850);
   };
 
   return (
     <div className={styles.outerContainer}>
       
-      {/* FIXED HUD HEADER (15% Height approx) */}
+      {/* ── HIGH-STATUS LIGHT HEADER ── */}
       <header className={styles.header}>
         <div className={styles.headerLeft}>
           <button className={styles.backButton} onClick={onBack} aria-label="Back">
@@ -32,149 +32,142 @@ const FoodWaterHubs: React.FC<FoodWaterHubsProps> = ({ onBack }) => {
             <p className={styles.headerSubtitle}>SECTOR 3 • LIVE ICCC LOGISTICS FEED</p>
           </div>
         </div>
-
+        
         <div className={styles.purityBadge}>
           <span className={styles.pulseGreen} />
           <span className={styles.purityText}>100% RO PURITY SIGNED</span>
         </div>
       </header>
 
-      {/* DYNAMIC LIVE AVAILABILITY BENTO STACK */}
-      <div className={styles.bentoContainer}>
-        
-        {/* CARD 1: THE AI-OPTIMIZED MEGA HUB */}
-        <div className={styles.megaHubCard}>
+      {/* ── SCROLLABLE CONTROLLER BODY ── */}
+      <main className={styles.bentoContainer}>
+
+        {/* ── NODE 12: THE AI-OPTIMIZED OPTIMAL STATE ── */}
+        <section className={styles.megaHubCard}>
+          
+          {/* Node Headers */}
           <div className={styles.cardHeaderRow}>
             <div className={styles.cardHeaderLeft}>
-              <span className={styles.hubId}>LOGISTICS NODE 12</span>
+              <p className={styles.hubId}>LOGISTICS NODE 12</p>
               <h2 className={styles.hubName}>Hub 12 • Saraswati Sector Park</h2>
             </div>
-            <span className={styles.aiBadge}>AI RECOMMENDED OPTIMAL STATE</span>
-          </div>
-
-          {/* Segmented Meter - 85% filled */}
-          <div className={styles.meterSection}>
-            <div className={styles.segmentedMeter}>
-              <div className={`${styles.meterBlock} ${styles.blockFilled}`} />
-              <div className={`${styles.meterBlock} ${styles.blockFilled}`} />
-              <div className={`${styles.meterBlock} ${styles.blockFilled}`} />
-              <div className={`${styles.meterBlock} ${styles.blockFilled}`} />
-              <div className={`${styles.meterBlock} ${styles.blockFilled}`} />
-              <div className={`${styles.meterBlock} ${styles.blockFilled}`} />
-              <div className={`${styles.meterBlock} ${styles.blockFilled}`} />
-              <div className={`${styles.meterBlock} ${styles.blockFilled}`} />
-              <div className={`${styles.meterBlock} ${styles.blockFilled}`} />
-              <div className={styles.meterBlock} />
-            </div>
-            <span className={styles.supplyLabel}>
-              SUPPLY LEVEL: ABUNDANT (5,000+ MEALS READY)
+            <span className={styles.aiBadge}>
+              AI RECOMMENDED OPTIMAL STATE
             </span>
           </div>
 
-          {/* Metric Telemetry Row */}
+          {/* Segmented Visual Progress Bar */}
+          <div className={styles.segmentedMeter}>
+            {[...Array(7)].map((_, i) => (
+              <div key={i} className={`${styles.meterBlock} ${styles.blockFilled}`} />
+            ))}
+            <div className={styles.meterBlock} />
+          </div>
+          
+          <p className={styles.supplyLabel}>
+            <CheckCircle2 size={14} /> SUPPLY LEVEL: ABUNDANT (5,000+ MEALS READY)
+          </p>
+
+          {/* Divider */}
+          <div style={{ height: '1px', backgroundColor: '#f1f5f9', margin: '4px 0' }} />
+
+          {/* Telemetry Metrics Layer */}
           <div className={styles.telemetryGrid}>
             <div className={styles.telemetryRow}>
               <span className={styles.telemetryLabel}>
-                <Clock size={12} /> Queue Wait
+                <Clock size={16} className={styles.telemetryIcon} /> Queue Wait
               </span>
               <span className={styles.telemetryValueGreen}>&lt; 2 MINS</span>
             </div>
             
             <div className={styles.telemetryRow}>
               <span className={styles.telemetryLabel}>
-                <UtensilsCrossed size={12} /> Menu Distribution
+                <UtensilsCrossed size={16} className={styles.telemetryIcon} /> Menu Distribution
               </span>
               <span className={styles.telemetryValue}>FREE ANNADANAM / SATVIK</span>
             </div>
 
             <div className={styles.telemetryRow}>
               <span className={styles.telemetryLabel}>
-                <Droplet size={12} /> Water Stations
+                <Droplet size={16} className={styles.telemetryIcon} /> Water Stations
               </span>
               <span className={styles.telemetryValue}>12 ACTIVE TAPS</span>
             </div>
           </div>
 
-          {/* Action Trigger Bar */}
+          {/* Saffron Action Target */}
           <button 
             className={styles.actionButton}
             onClick={handleSpawnToken}
             disabled={generating}
           >
-            <span className={styles.buttonText}>
-              {generating ? (
-                "GENERATING QR CODE..."
-              ) : (
-                <>
-                  <QrCode size={14} />
-                  TAP TO SPAWN MEAL QR TOKEN →
-                </>
-              )}
-            </span>
+            <QrCode size={16} />
+            <span>{generating ? "Spawning Token..." : "Tap to Spawn Meal QR Token →"}</span>
           </button>
-        </div>
+        </section>
 
-        {/* CARD 2: THE REPLENISHING STALL (Opacity dropped to 70%) */}
-        <div className={styles.replenishingCard}>
+
+        {/* ── NODE 04: THE CRITICAL ZONE (OPACITY LOWERED) ── */}
+        <section className={styles.replenishingCard}>
+          
+          {/* Node Headers */}
           <div className={styles.cardHeaderRow}>
             <div className={styles.cardHeaderLeft}>
-              <span className={styles.hubId}>LOGISTICS NODE 04</span>
-              <h2 className={styles.hubName}>Stall 04 • Main Ghat Gate Intersection</h2>
+              <p className={styles.hubId}>LOGISTICS NODE 04</p>
+              <h2 className={styles.hubName} style={{ color: '#475569' }}>Stall 04 • Main Ghat Gate Intersection</h2>
             </div>
           </div>
 
-          {/* Segmented Meter - 15% filled */}
-          <div className={styles.meterSection}>
-            <div className={styles.segmentedMeter}>
-              <div className={`${styles.meterBlock} ${styles.blockFilledCritical}`} />
-              <div className={`${styles.meterBlock} ${styles.blockFilledCritical}`} />
-              <div className={styles.meterBlock} />
-              <div className={styles.meterBlock} />
-              <div className={styles.meterBlock} />
-              <div className={styles.meterBlock} />
-              <div className={styles.meterBlock} />
-              <div className={styles.meterBlock} />
-              <div className={styles.meterBlock} />
-              <div className={styles.meterBlock} />
-            </div>
-            <span className={styles.supplyLabelAmber}>
-              SUPPLY LEVEL: CRITICAL (REPLENISHING)
-            </span>
+          {/* Segmented Visual Progress Bar */}
+          <div className={styles.segmentedMeter}>
+            {[...Array(2)].map((_, i) => (
+              <div key={i} className={`${styles.meterBlock} ${styles.blockFilledCritical}`} />
+            ))}
+            {[...Array(6)].map((_, i) => (
+              <div key={i} className={styles.meterBlock} />
+            ))}
           </div>
+          
+          <p className={styles.supplyLabelAmber}>
+            <AlertTriangle size={14} /> SUPPLY LEVEL: CRITICAL (REPLENISHING)
+          </p>
 
-          {/* Metric Telemetry Row */}
+          {/* Divider */}
+          <div style={{ height: '1px', backgroundColor: '#f1f5f9', margin: '4px 0' }} />
+
+          {/* Telemetry Metrics Layer */}
           <div className={styles.telemetryGrid}>
             <div className={styles.telemetryRow}>
               <span className={styles.telemetryLabel}>
-                <Clock size={12} /> Queue Wait
+                <Clock size={16} className={styles.telemetryIcon} /> Queue Wait
               </span>
               <span className={styles.telemetryValueAmber}>~35 MINS (HEAVY SURGE)</span>
             </div>
             
             <div className={styles.telemetryRow}>
               <span className={styles.telemetryLabel}>
-                <Sparkles size={12} /> Next Supply Truck
+                <Truck size={16} className={styles.telemetryIcon} /> Next Supply Truck
               </span>
-              <span className={styles.telemetryValue}>ETA 14 MINS</span>
+              <span className={styles.telemetryValue} style={{ color: '#64748b' }}>ETA 14 MINS</span>
             </div>
 
             <div className={styles.telemetryRow}>
               <span className={styles.telemetryLabel}>
-                <Droplet size={12} /> Water Stations
+                <Droplet size={16} className={styles.telemetryIcon} /> Water Stations
               </span>
-              <span className={styles.telemetryValue}>2 ACTIVE TAPS</span>
+              <span className={styles.telemetryValue} style={{ color: '#64748b' }}>2 ACTIVE TAPS</span>
             </div>
           </div>
 
-          {/* Action Disabled Target */}
+          {/* Disabled Placeholding Banner */}
           <div className={styles.disabledBand}>
-            DIVERSION RECOMMENDED — PROCEED TO HUB 12
+            Diversion Recommended — Proceed to Hub 12
           </div>
-        </div>
+        </section>
 
-      </div>
+      </main>
 
-      {/* TICKET QR SPAWNER MODAL DIALOG */}
+      {/* DYNAMIC QR CODE SPAWNER MODAL */}
       {tokenSpawned && (
         <div className={styles.modalOverlay}>
           <div className={styles.modalCard}>
@@ -200,7 +193,7 @@ const FoodWaterHubs: React.FC<FoodWaterHubsProps> = ({ onBack }) => {
             </div>
 
             <div className={styles.ticketStatus}>
-              <Check size={10} /> SIGNED BY ICCC LOGISTICS
+              <CheckCircle2 size={10} /> SIGNED BY ICCC LOGISTICS
             </div>
 
             {/* Details Receipt Block */}
