@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Phone, Map, Navigation, MapPin, Clock, Info, CornerUpRight, Compass, Navigation2 } from 'lucide-react';
+import { Phone, Map, MapPin, Clock, Info, CornerUpRight, Compass, Navigation2 } from 'lucide-react';
 import styles from './Updates.module.css';
 
 // SVG Icons

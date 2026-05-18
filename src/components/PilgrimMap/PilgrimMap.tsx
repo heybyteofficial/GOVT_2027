@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, Mic, Car, Bike, Crosshair, Navigation, Zap } from 'lucide-react';
+import { Search, Mic, Car, Bike, Crosshair, Zap } from 'lucide-react';
 import styles from './PilgrimMap.module.css';
 
 const StarOfLifeRed = () => (
