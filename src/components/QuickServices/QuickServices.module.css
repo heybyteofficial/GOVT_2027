@@ -102,27 +102,31 @@
   }
   
   .grid {
-    grid-template-columns: repeat(5, 1fr);
-    gap: 8px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
   }
   
   .card {
-    padding: 12px 6px;
+    padding: 14px 8px;
     border-radius: 16px;
-    gap: 8px;
-    aspect-ratio: 1 / 1.15; /* Better text verticality */
+    gap: 10px;
+    aspect-ratio: auto;
+    min-height: 96px;
     background: #f1f5f9;
+    min-width: 0;
   }
   
   .iconWrapper {
-    width: 28px;
-    height: 28px;
+    width: 32px;
+    height: 32px;
   }
   
   .label {
-    font-size: 0.65rem; /* Increased for professional readability */
+    font-size: 0.7rem;
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.25;
     color: #334155;
+    word-break: break-word;
+    overflow-wrap: break-word;
   }
 }

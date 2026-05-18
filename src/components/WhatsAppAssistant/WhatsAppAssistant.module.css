@@ -1,0 +1,203 @@
+.wrapper {
+  position: fixed;
+  bottom: 85px; /* Sits just above BottomNav */
+  left: 0;
+  right: 0;
+  z-index: 999;
+  padding: 0 16px;
+  display: flex;
+  justify-content: center;
+  pointer-events: none; /* Let clicks pass through empty space */
+}
+
+.container {
+  max-width: 600px; /* Limit width like BottomNav */
+  width: 100%;
+  pointer-events: auto; /* Re-enable clicks on the banner itself */
+}
+
+.banner {
+  background: #f0f7ff;
+  border: 1px solid #dbeafe;
+  border-radius: 16px;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 8px 32px rgba(0, 75, 203, 0.12); /* Add nice shadow for floating */
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.waIconWrapper {
+  width: 56px;
+  height: 56px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.15);
+  flex-shrink: 0;
+}
+
+.waIcon {
+  width: 40px;
+  height: 40px;
+}
+
+.textGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.subTextTop {
+  font-size: 0.85rem;
+  color: #475569;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1e3a8a;
+  margin: 0;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+.subTextBottom {
+  font-size: 0.85rem;
+  color: #475569;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.robotWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 64px;
+}
+
+.chatButton {
+  background: #0a4bcb;
+  color: white;
+  border: none;
+  border-radius: 24px;
+  padding: 12px 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.chatButton:hover {
+  background: #083c9d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(10, 75, 203, 0.2);
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    bottom: 80px;
+    padding: 0 12px;
+  }
+
+  .banner {
+    padding: 10px 12px;
+    flex-direction: row;
+    gap: 6px;
+    border-radius: 12px;
+  }
+
+  .leftSection {
+    gap: 6px;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+  
+  .waIconWrapper {
+    width: 32px;
+    height: 32px;
+  }
+
+  .waIcon {
+    width: 22px;
+    height: 22px;
+  }
+
+  .textGroup {
+    gap: 0px;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+
+  .title {
+    font-size: 0.85rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .subTextTop {
+    font-size: 0.6rem;
+    margin-bottom: -1px;
+    white-space: nowrap;
+  }
+  
+  .subTextBottom {
+    font-size: 0.6rem;
+    margin-top: 1px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .rightSection {
+    gap: 6px;
+    flex-shrink: 0;
+  }
+  
+  .robotWrapper svg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .chatButton {
+    padding: 8px 12px;
+    font-size: 0.75rem;
+    border-radius: 20px;
+    gap: 4px;
+  }
+  
+  .chatButton svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+/* Adjust layout for mid-sized screens */
+@media (max-width: 900px) and (min-width: 769px) {
+  .banner {
+    flex-wrap: wrap;
+  }
+}
