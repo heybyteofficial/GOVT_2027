@@ -124,12 +124,6 @@ const services = [
   { id: 7, label: 'Temple Queue', icon: Icons.TempleQueue },
   { id: 8, label: 'Toilets', icon: Icons.Toilets },
   { id: 9, label: 'Accommodation', icon: Icons.Accommodation },
-  { id: 10, label: 'Ambulance', icon: Icons.Ambulance, target: 'emergency' },
-  { id: 11, label: 'Medical Help', icon: Icons.MedicalHelp, target: 'emergency' },
-  { id: 12, label: 'Lost & Found', icon: Icons.LostFound, target: 'emergency' },
-  { id: 13, label: 'Missing Child', icon: Icons.MissingChild, target: 'emergency' },
-  { id: 14, label: 'Hospitals', icon: Icons.Hospitals, target: 'emergency' },
-  { id: 15, label: 'Police & Distress', icon: Icons.Police, target: 'emergency' },
 ];
 
 interface QuickServicesProps {
@@ -163,11 +157,9 @@ const QuickServices: React.FC<QuickServicesProps> = ({ onSelectService }) => {
                   onSelectService('toilets');
                 } else if (service.id === 9 && onSelectService) {
                   onSelectService('transit-camps');
-                } else if ((service.id === 10 || service.id === 11 || service.id === 12 || service.id === 13 || service.id === 14 || service.id === 15 || service.target === 'emergency') && onSelectService) {
-                  onSelectService('emergency-sos');
                 }
               }}
-              style={(service.id === 1 || service.id === 2 || service.id === 3 || service.id === 5 || service.id === 8 || service.id === 9 || service.id === 10 || service.id === 11 || service.id === 12 || service.id === 13 || service.id === 14 || service.id === 15 || service.target === 'emergency') ? { cursor: 'pointer' } : undefined}
+              style={(service.id === 1 || service.id === 2 || service.id === 3 || service.id === 5 || service.id === 8 || service.id === 9) ? { cursor: 'pointer' } : undefined}
             >
               <div className={styles.iconWrapper}>
                 <service.icon />
