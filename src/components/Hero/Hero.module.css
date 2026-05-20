@@ -202,6 +202,65 @@
   height: 16px;
 }
 
+/* Leader avatars group */
+.leadersWrapper {
+  position: absolute;
+  top: 100px;
+  right: 40px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  z-index: 60;
+}
+
+.leaderAvatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid white;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  background: #fff;
+}
+
+@media (max-width: 1024px) {
+  .leadersWrapper {
+    top: 80px;
+    right: 20px;
+    gap: 10px;
+  }
+  .leaderAvatar {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 768px) {
+  .leadersWrapper {
+    top: 70px;
+    right: 16px;
+    gap: 8px;
+  }
+  .leaderAvatar {
+    width: 44px;
+    height: 44px;
+    border-width: 3px;
+  }
+}
+
+@media (max-width: 480px) {
+  .leadersWrapper {
+    top: 8px;
+    right: 12px;
+    gap: 6px;
+  }
+  .leaderAvatar {
+    width: 40px;
+    height: 40px;
+    border-width: 2px;
+  }
+}
+
 @media (max-width: 1024px) {
   .heroContent {
     padding: 0 20px;

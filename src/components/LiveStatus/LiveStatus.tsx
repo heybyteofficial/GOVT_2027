@@ -30,46 +30,55 @@ const LiveStatus: React.FC = () => {
   return (
     <section className={styles.statusContainer}>
       <div className={styles.innerContainer}>
-        <h2 className={styles.sectionTitle}>Live Status</h2>
+        <h2 className={styles.sectionTitle}>Upcoming Services</h2>
         <div className={styles.grid}>
-          <StatusCard 
-            icon={Users} 
-            label="Ghat Crowd" 
-            status="Medium" 
-            subtext="View All >" 
-            color="#f59e0b" 
+          <StatusCard
+            icon={Users}
+            label="Volunteer Registration"
+            status="Open"
+            subtext="Register >"
+            color="#10b981"
             iconColor="#3b82f6"
           />
-          <StatusCard 
-            icon={Car} 
-            label="Traffic" 
-            status="Smooth" 
-            subtext="View Map >" 
-            color="#10b981" 
+          <StatusCard
+            icon={Users}
+            label="Priests' Registration"
+            status="Open"
+            subtext="Register >"
+            color="#10b981"
+            iconColor="#3b82f6"
+          />
+          <StatusCard
+            icon={Car}
+            label="Registration of Hotels"
+            status="Open"
+            subtext="Register >"
+            color="#10b981"
             iconColor="#10b981"
           />
-          <StatusCard 
-            icon={CloudSun} 
-            label="Weather" 
-            status="28°C" 
-            subtext="Clear" 
-            color="#3b82f6" 
+          <StatusCard
+            icon={CloudSun}
+            label="Ritual Prices"
+            status="View"
+            subtext="Details >"
+            color="#3b82f6"
             iconColor="#f59e0b"
           />
-          <StatusCard 
-            icon={Waves} 
-            label="River Level" 
-            status="Normal" 
-            subtext="Status >" 
-            color="#3b82f6" 
+          <StatusCard
+            icon={Waves}
+            label="Cultural Activities"
+            status="See Locations"
+            subtext="View Map >"
+            color="#3b82f6"
             iconColor="#3b82f6"
           />
-          <StatusCard 
-            isParking={true}
-            label="Parking" 
-            status="72%" 
-            subtext="Available" 
-            color="#10b981" 
+          <StatusCard
+            icon={Users}
+            label="More Upcoming Services"
+            status="See All"
+            subtext="Explore >"
+            color="#6b7280"
+            iconColor="#6b7280"
           />
         </div>
       </div>

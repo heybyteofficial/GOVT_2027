@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Header from './components/Header/Header';
 import Hero from './components/Hero/Hero';
 import LiveStatus from './components/LiveStatus/LiveStatus';
@@ -16,10 +16,16 @@ import SmartToilets from './components/SmartToilets/SmartToilets';
 import TransitCamps from './components/TransitCamps/TransitCamps';
 import EmergencySOS from './components/EmergencySOS/EmergencySOS';
 import BottomNav from './components/BottomNav/BottomNav';
+import ComingSoonGrid from './components/ComingSoonGrid/ComingSoonGrid';
 import './index.css';
 
 function App() {
   const [activeTab, setActiveTab] = useState('home');
+
+  // Scroll to top when tab changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [activeTab]);
 
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#fdfdfd', overflowX: 'hidden' }}>
@@ -29,6 +35,7 @@ function App() {
           <>
             <Hero />
             <div style={{ position: 'relative', zIndex: 10 }}>
+              <ComingSoonGrid />
               <LiveStatus />
               <QuickServices onSelectService={(service) => setActiveTab(service)} />
               <WhatsAppAssistant />

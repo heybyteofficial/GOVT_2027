@@ -1,7 +1,7 @@
 .statusContainer {
   width: 100%;
   padding: 0 40px;
-  margin-top: -60px;
+  margin-top: -30px;
   position: relative;
   z-index: 20;
 }
@@ -110,7 +110,7 @@
 
 @media (max-width: 768px) {
   .statusContainer {
-    margin-top: -30px; /* Softer negative margin */
+    margin-top: 0px; /* Bring it down below hero image slightly */
     padding: 0;
   }
   
