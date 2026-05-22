@@ -64,7 +64,7 @@ const Hero: React.FC = () => {
             '/assets/leaders_backup_20260521_180023/leader1.jpg',
             '/assets/leaders_backup_20260521_180023/leader2.webp',
             '/assets/leaders_backup_20260521_180023/leader3.jpg',
-            '/assets/leaders_backup_20260521_180023/Screenshot 2026-05-22 161502.png',
+            '/assets/leaders_backup_20260521_180023/Screenshot%202026-05-22%20161502.png',
           ].map((src, i) => (
             <img
               key={i}
