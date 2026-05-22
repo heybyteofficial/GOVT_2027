@@ -60,11 +60,16 @@ const Hero: React.FC = () => {
 
         {/* Leader avatars (top-right) */}
         <div className={styles.leadersWrapper}>
-          {['/assets/leaders/leader.png'].map((src, i) => (
+          {[
+            '/assets/leaders_backup_20260521_180023/leader1.jpg',
+            '/assets/leaders_backup_20260521_180023/leader2.webp',
+            '/assets/leaders_backup_20260521_180023/leader3.jpg',
+            '/assets/leaders_backup_20260521_180023/Screenshot 2026-05-22 161502.png',
+          ].map((src, i) => (
             <img
               key={i}
               src={src}
-              alt="leader"
+              alt={`leader-${i + 1}`}
               className={styles.leaderAvatar}
               onError={(e:any) => { e.currentTarget.style.display = 'none'; }}
             />
